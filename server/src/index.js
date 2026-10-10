@@ -1,7 +1,10 @@
 import { MongoClient, ServerApiVersion } from 'mongodb';
 
 import { createApp } from './app.js';
+<<<<<<< HEAD
 import { parseAllowedOrigins } from './cors.js';
+=======
+>>>>>>> 63bdaa2 (p1p2 with data layer)
 import { ensureIndexes } from './store.js';
 
 const { MONGODB_URI, MONGODB_DB = 'touch_grass', API_KEY, PORT = '8080' } = process.env;
@@ -28,8 +31,11 @@ const server = createApp({
   apiKey: API_KEY,
   minDevices: Number(process.env.MIN_DEVICES ?? 2),
   hideAfter: Number(process.env.HIDE_AFTER ?? 3),
+<<<<<<< HEAD
   allowedOrigins: parseAllowedOrigins(process.env.ALLOWED_ORIGINS),
   staticDir: process.env.STATIC_DIR || null,
+=======
+>>>>>>> 63bdaa2 (p1p2 with data layer)
 }).listen(Number(PORT), () => {
   console.log(`touch-grass sync API listening on :${PORT} (db ${MONGODB_DB})`);
 });

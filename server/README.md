@@ -15,6 +15,7 @@ phone (SQLite, source of truth) ──HTTPS, x-api-key──▶ this API ──m
 3. `npm install`, then `node --env-file=.env src/index.js` (Node ≥ 20.6; or export the vars yourself).
 4. `curl localhost:8080/healthz` should return `{"ok":true}`.
 
+<<<<<<< HEAD
 
 ## Web app: CORS and hosting
 
@@ -31,6 +32,15 @@ The web app in `../web` can use this server two ways.
 
 Note that the key the web app sends ships inside the web bundle, so anyone who opens the app can read it. That is acceptable
 for a private beta; before a public release the API needs per-user authentication.
+=======
+Run the app against it:
+```
+flutter run --dart-define=SYNC_URL=https://your-host --dart-define=SYNC_API_KEY=<same key>
+```
+The URL can also be changed under Settings → Cloud backup; the key is build-time only.
+For the Android emulator talking to a laptop, use `http://10.0.2.2:8080`. Plain http is accepted only for
+localhost/LAN, and Android also needs `android:usesCleartextTraffic="true"` for that debug build.
+>>>>>>> 63bdaa2 (p1p2 with data layer)
 
 ## API
 | Method | Path | |

@@ -1,0 +1,133 @@
+{
+ "version": 0.6,
+ "generator": "hand-made fixture",
+ "elements": [
+  {
+   "type": "node",
+   "id": 1,
+   "tags": {
+    "amenity": "fountain",
+    "name": "Quiet Fountain"
+   },
+   "lat": 40.781,
+   "lon": -73.965
+  },
+  {
+   "type": "node",
+   "id": 2,
+   "tags": {
+    "tourism": "artwork",
+    "name": "Bronze Heron"
+   },
+   "lat": 40.7822,
+   "lon": -73.9638
+  },
+  {
+   "type": "way",
+   "id": 3,
+   "tags": {
+    "tourism": "viewpoint",
+    "name": "Lookout Rock"
+   },
+   "center": {
+    "lat": 40.7835,
+    "lon": -73.9622
+   }
+  },
+  {
+   "type": "way",
+   "id": 4,
+   "tags": {
+    "leisure": "garden",
+    "name": "Pocket Garden"
+   },
+   "center": {
+    "lat": 40.779,
+    "lon": -73.968
+   }
+  },
+  {
+   "type": "node",
+   "id": 5,
+   "tags": {
+    "historic": "memorial",
+    "name": "Veterans Plaque"
+   },
+   "lat": 40.785,
+   "lon": -73.96
+  },
+  {
+   "type": "way",
+   "id": 6,
+   "tags": {
+    "leisure": "park",
+    "name": "Big Meadow"
+   },
+   "center": {
+    "lat": 40.7805,
+    "lon": -73.97
+   }
+  },
+  {
+   "type": "node",
+   "id": 7,
+   "tags": {
+    "historic": "monument",
+    "name": "Famous Statue",
+    "wikidata": "Q123"
+   },
+   "lat": 40.784,
+   "lon": -73.969
+  },
+  {
+   "type": "node",
+   "id": 8,
+   "tags": {
+    "tourism": "attraction",
+    "name": "Famous Museum",
+    "wikipedia": "en:Famous Museum"
+   },
+   "lat": 40.7815,
+   "lon": -73.961
+  },
+  {
+   "type": "node",
+   "id": 9,
+   "tags": {
+    "tourism": "artwork"
+   },
+   "lat": 40.7825,
+   "lon": -73.9645
+  },
+  {
+   "type": "node",
+   "id": 10,
+   "tags": {
+    "amenity": "fountain",
+    "name": "Quiet Fountain"
+   },
+   "lat": 40.7811,
+   "lon": -73.9651
+  },
+  {
+   "type": "node",
+   "id": 11,
+   "tags": {
+    "amenity": "place_of_worship",
+    "name": "Little Chapel"
+   },
+   "lat": 40.786,
+   "lon": -73.966
+  },
+  {
+   "type": "node",
+   "id": 12,
+   "tags": {
+    "tourism": "artwork",
+    "name": "Mural Wall"
+   },
+   "lat": 40.7795,
+   "lon": -73.963
+  }
+ ]
+}
