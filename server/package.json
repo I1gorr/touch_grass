@@ -1,0 +1,19 @@
+{
+  "name": "touch-grass-sync",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Sync API: receives walk/stop/entry rows from the Touch Grass app and upserts them into MongoDB Atlas.",
+  "type": "module",
+  "main": "src/index.js",
+  "engines": {
+    "node": ">=18"
+  },
+  "scripts": {
+    "start": "node src/index.js",
+    "test": "node --test"
+  },
+  "dependencies": {
+    "express": "^4.21.1",
+    "mongodb": "^6.10.0"
+  }
+}

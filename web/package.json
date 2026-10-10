@@ -1,0 +1,37 @@
+{
+  "name": "touch-grass-web",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc --noEmit && vite build",
+    "preview": "vite preview",
+    "preview:http": "NO_SSL=1 vite preview --host 127.0.0.1 --port 4174",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run",
+    "e2e": "node e2e/smoke.mjs",
+    "e2e:pwa": "node e2e/pwa.mjs",
+    "e2e:models": "node e2e/models.mjs",
+    "e2e:llm": "node e2e/llm.mjs",
+    "e2e:speech": "node e2e/speech.mjs"
+  },
+  "devDependencies": {
+    "@types/node": "^26.6.5",
+    "@vitejs/plugin-basic-ssl": "^2.3.0",
+    "fake-indexeddb": "^6.2.5",
+    "playwright-core": "^1.64.0",
+    "typescript": "^7.0.2",
+    "vite": "^8.3.4",
+    "vite-plugin-pwa": "^2.0.0",
+    "vitest": "^5.0.3"
+  },
+  "dependencies": {
+    "@huggingface/transformers": "^4.3.1",
+    "idb": "^8.0.4"
+  },
+  "description": "Touch Grass as an installable web app (PWA) for Android: street-routed walk quests, voice notes transcribed on the phone, works offline.",
+  "engines": {
+    "node": ">=20"
+  }
+}

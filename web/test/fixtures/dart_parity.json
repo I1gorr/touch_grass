@@ -1,0 +1,2510 @@
+{
+ "seeded": {
+  "0:node/1": 0.43906456232070923,
+  "7:way/123456": 0.0311659574508667,
+  "3:node/987654321": 0.29808616638183594,
+  "199:relation/5": 0.09681767225265503
+ },
+ "gridSeeds": {
+  "0": [
+   {
+    "picks": [
+     "node/1218773961",
+     "node/1498853504",
+     "node/370308021",
+     "node/1732766296"
+    ],
+    "legsM": [
+     400,
+     502,
+     501,
+     604,
+     402
+    ],
+    "totalM": 2409,
+    "stopPointIndex": [
+     1,
+     3,
+     5,
+     6
+    ],
+    "pointCount": 8,
+    "polyline": "cl|wFvjmbM?u\\sU??lF?fUhJ?|`@?sU?",
+    "durationS": 1798,
+    "score": 19.016194085665788,
+    "mode": "street",
+    "reasons": [
+     "no community data yet; new to you",
+     "no community data yet; new to you",
+     "no community data yet; new to you",
+     "no community data yet; new to you"
+    ]
+   },
+   {
+    "picks": [
+     "node/1218773961",
+     "node/1498853504",
+     "node/1627725173",
+     "node/370308021"
+    ],
+    "legsM": [
+     400,
+     502,
+     600,
+     502,
+     201
+    ],
+    "totalM": 2205,
+    "stopPointIndex": [
+     1,
+     3,
+     5,
+     7
+    ],
+    "pointCount": 9,
+    "polyline": "cl|wFvjmbM?u\\sU??lFsD??`d@?yM|O?hJ?",
+    "durationS": 1646,
+    "score": 18.15262130608086,
+    "mode": "street",
+    "reasons": [
+     "no community data yet; new to you",
+     "no community data yet; new to you",
+     "no community data yet; new to you",
+     "no community data yet; new to you"
+    ]
+   },
+   {
+    "picks": [
+     "node/1732766296",
+     "node/1911553616",
+     "node/1218773961",
+     "node/370308021"
+    ],
+    "legsM": [
+     402,
+     701,
+     301,
+     601,
+     201
+    ],
+    "totalM": 2206,
+    "stopPointIndex": [
+     1,
+     3,
+     5,
+     7
+    ],
+    "pointCount": 9,
+    "polyline": "cl|wFvjmbMrU?iJ??ad@iJ??jFiJ??t\\hJ?",
+    "durationS": 1646,
+    "score": 17.688705465497502,
+    "mode": "street",
+    "reasons": [
+     "no community data yet; new to you",
+     "no community data yet; new to you",
+     "no community data yet; new to you",
+     "no community data yet; new to you"
+    ]
+   }
+  ],
+  "1": [
+   {
+    "picks": [
+     "node/1732766296",
+     "node/1911553616",
+     "node/1218773961",
+     "node/370308021"
+    ],
+    "legsM": [
+     402,
+     701,
+     301,
+     601,
+     201
+    ],
+    "totalM": 2206,
+    "stopPointIndex": [
+     1,
+     3,
+     5,
+     7
+    ],
+    "pointCount": 9,
+    "polyline": "cl|wFvjmbMrU?iJ??ad@iJ??jFiJ??t\\hJ?",
+    "durationS": 1646,
+    "score": 20.92216361493064,
+    "mode": "street",
+    "reasons": [
+     "no community data yet; new to you",
+     "no community data yet; new to you",
+     "no community data yet; new to you",
+     "no community data yet; new to you"
+    ]
+   },
+   {
+    "picks": [
+     "node/1218773961",
+     "node/1498853504",
+     "node/370308021",
+     "node/1732766296"
+    ],
+    "legsM": [
+     400,
+     502,
+     501,
+     604,
+     402
+    ],
+    "totalM": 2409,
+    "stopPointIndex": [
+     1,
+     3,
+     5,
+     6
+    ],
+    "pointCount": 8,
+    "polyline": "cl|wFvjmbM?u\\sU??lF?fUhJ?|`@?sU?",
+    "durationS": 1798,
+    "score": 20.753647689410293,
+    "mode": "street",
+    "reasons": [
+     "no community data yet; new to you",
+     "no community data yet; new to you",
+     "no community data yet; new to you",
+     "no community data yet; new to you"
+    ]
+   },
+   {
+    "picks": [
+     "node/1732766296",
+     "node/370308021",
+     "node/1627725173"
+    ],
+    "legsM": [
+     402,
+     604,
+     502,
+     703
+    ],
+    "totalM": 2211,
+    "stopPointIndex": [
+     1,
+     2,
+     4
+    ],
+    "pointCount": 7,
+    "polyline": "cl|wFvjmbMrU?}`@?}O??xM?yMf[?",
+    "durationS": 1650,
+    "score": 15.763138721852656,
+    "mode": "street",
+    "reasons": [
+     "no community data yet; new to you",
+     "no community data yet; new to you",
+     "no community data yet; new to you"
+    ]
+   }
+  ],
+  "2": [
+   {
+    "picks": [
+     "node/1732766296",
+     "node/370308021",
+     "node/1498853504",
+     "node/1218773961"
+    ],
+    "legsM": [
+     402,
+     604,
+     501,
+     502,
+     400
+    ],
+    "totalM": 2409,
+    "stopPointIndex": [
+     1,
+     2,
+     4,
+     6
+    ],
+    "pointCount": 8,
+    "polyline": "cl|wFvjmbMrU?}`@?iJ??gU?mFrU??t\\",
+    "durationS": 1798,
+    "score": 21.07128471572026,
+    "mode": "street",
+    "reasons": [
+     "no community data yet; new to you",
+     "no community data yet; new to you",
+     "no community data yet; new to you",
+     "no community data yet; new to you"
+    ]
+   },
+   {
+    "picks": [
+     "node/1732766296",
+     "node/1911553616",
+     "node/1218773961",
+     "node/370308021"
+    ],
+    "legsM": [
+     402,
+     701,
+     301,
+     601,
+     201
+    ],
+    "totalM": 2206,
+    "stopPointIndex": [
+     1,
+     3,
+     5,
+     7
+    ],
+    "pointCount": 9,
+    "polyline": "cl|wFvjmbMrU?iJ??ad@iJ??jFiJ??t\\hJ?",
+    "durationS": 1646,
+    "score": 20.42933674782706,
+    "mode": "street",
+    "reasons": [
+     "no community data yet; new to you",
+     "no community data yet; new to you",
+     "no community data yet; new to you",
+     "no community data yet; new to you"
+    ]
+   },
+   {
+    "picks": [
+     "node/370308021",
+     "node/1627725173",
+     "node/1498853504",
+     "node/1218773961"
+    ],
+    "legsM": [
+     201,
+     502,
+     600,
+     502,
+     400
+    ],
+    "totalM": 2205,
+    "stopPointIndex": [
+     1,
+     3,
+     5,
+     7
+    ],
+    "pointCount": 9,
+    "polyline": "cl|wFvjmbMiJ?}O??xM?ad@rD??mFrU??t\\",
+    "durationS": 1646,
+    "score": 18.48175195564751,
+    "mode": "street",
+    "reasons": [
+     "no community data yet; new to you",
+     "no community data yet; new to you",
+     "no community data yet; new to you",
+     "no community data yet; new to you"
+    ]
+   }
+  ],
+  "3": [
+   {
+    "picks": [
+     "node/1732766296",
+     "node/1911553616",
+     "node/1218773961",
+     "node/370308021"
+    ],
+    "legsM": [
+     402,
+     701,
+     301,
+     601,
+     201
+    ],
+    "totalM": 2206,
+    "stopPointIndex": [
+     1,
+     3,
+     5,
+     7
+    ],
+    "pointCount": 9,
+    "polyline": "cl|wFvjmbMrU?iJ??ad@iJ??jFiJ??t\\hJ?",
+    "durationS": 1646,
+    "score": 19.44851771325065,
+    "mode": "street",
+    "reasons": [
+     "no community data yet; new to you",
+     "no community data yet; new to you",
+     "no community data yet; new to you",
+     "no community data yet; new to you"
+    ]
+   },
+   {
+    "picks": [
+     "node/370308021",
+     "node/1627725173",
+     "node/1498853504",
+     "node/1218773961"
+    ],
+    "legsM": [
+     201,
+     502,
+     600,
+     502,
+     400
+    ],
+    "totalM": 2205,
+    "stopPointIndex": [
+     1,
+     3,
+     5,
+     7
+    ],
+    "pointCount": 9,
+    "polyline": "cl|wFvjmbMiJ?}O??xM?ad@rD??mFrU??t\\",
+    "durationS": 1646,
+    "score": 16.410788835187002,
+    "mode": "street",
+    "reasons": [
+     "no community data yet; new to you",
+     "no community data yet; new to you",
+     "no community data yet; new to you",
+     "no community data yet; new to you"
+    ]
+   },
+   {
+    "picks": [
+     "node/370308021",
+     "node/1498853504",
+     "node/1627725173",
+     "node/1561782983"
+    ],
+    "legsM": [
+     201,
+     501,
+     600,
+     803,
+     499
+    ],
+    "totalM": 2604,
+    "stopPointIndex": [
+     1,
+     3,
+     5,
+     7
+    ],
+    "pointCount": 9,
+    "polyline": "cl|wFvjmbMiJ?iJ??gUsD??`d@?fUf[??ad@",
+    "durationS": 1943,
+    "score": 15.55813325698169,
+    "mode": "street",
+    "reasons": [
+     "no community data yet; new to you",
+     "no community data yet; new to you",
+     "no community data yet; new to you",
+     "no community data yet; new to you"
+    ]
+   }
+  ],
+  "4": [
+   {
+    "picks": [
+     "node/1732766296",
+     "node/1911553616",
+     "node/1218773961",
+     "node/370308021"
+    ],
+    "legsM": [
+     402,
+     701,
+     301,
+     601,
+     201
+    ],
+    "totalM": 2206,
+    "stopPointIndex": [
+     1,
+     3,
+     5,
+     7
+    ],
+    "pointCount": 9,
+    "polyline": "cl|wFvjmbMrU?iJ??ad@iJ??jFiJ??t\\hJ?",
+    "durationS": 1646,
+    "score": 17.420277139844426,
+    "mode": "street",
+    "reasons": [
+     "no community data yet; new to you",
+     "no community data yet; new to you",
+     "no community data yet; new to you",
+     "no community data yet; new to you"
+    ]
+   },
+   {
+    "picks": [
+     "node/1218773961",
+     "node/1498853504",
+     "node/370308021",
+     "node/1732766296"
+    ],
+    "legsM": [
+     400,
+     502,
+     501,
+     604,
+     402
+    ],
+    "totalM": 2409,
+    "stopPointIndex": [
+     1,
+     3,
+     5,
+     6
+    ],
+    "pointCount": 8,
+    "polyline": "cl|wFvjmbM?u\\sU??lF?fUhJ?|`@?sU?",
+    "durationS": 1798,
+    "score": 16.943097643443192,
+    "mode": "street",
+    "reasons": [
+     "no community data yet; new to you",
+     "no community data yet; new to you",
+     "no community data yet; new to you",
+     "no community data yet; new to you"
+    ]
+   },
+   {
+    "picks": [
+     "node/1732766296",
+     "node/370308021",
+     "node/1627725173"
+    ],
+    "legsM": [
+     402,
+     604,
+     502,
+     703
+    ],
+    "totalM": 2211,
+    "stopPointIndex": [
+     1,
+     2,
+     4
+    ],
+    "pointCount": 7,
+    "polyline": "cl|wFvjmbMrU?}`@?}O??xM?yMf[?",
+    "durationS": 1650,
+    "score": 13.49542101469552,
+    "mode": "street",
+    "reasons": [
+     "no community data yet; new to you",
+     "no community data yet; new to you",
+     "no community data yet; new to you"
+    ]
+   }
+  ],
+  "5": [
+   {
+    "picks": [
+     "node/1218773961",
+     "node/1498853504",
+     "node/370308021",
+     "node/1732766296"
+    ],
+    "legsM": [
+     400,
+     502,
+     501,
+     604,
+     402
+    ],
+    "totalM": 2409,
+    "stopPointIndex": [
+     1,
+     3,
+     5,
+     6
+    ],
+    "pointCount": 8,
+    "polyline": "cl|wFvjmbM?u\\sU??lF?fUhJ?|`@?sU?",
+    "durationS": 1798,
+    "score": 19.714861254283036,
+    "mode": "street",
+    "reasons": [
+     "no community data yet; new to you",
+     "no community data yet; new to you",
+     "no community data yet; new to you",
+     "no community data yet; new to you"
+    ]
+   },
+   {
+    "picks": [
+     "node/370308021",
+     "node/1218773961",
+     "node/1911553616",
+     "node/1732766296"
+    ],
+    "legsM": [
+     201,
+     601,
+     301,
+     701,
+     402
+    ],
+    "totalM": 2206,
+    "stopPointIndex": [
+     1,
+     3,
+     5,
+     7
+    ],
+    "pointCount": 9,
+    "polyline": "cl|wFvjmbMiJ??u\\hJ??kFhJ??`d@hJ?sU?",
+    "durationS": 1646,
+    "score": 19.62275422543479,
+    "mode": "street",
+    "reasons": [
+     "no community data yet; new to you",
+     "no community data yet; new to you",
+     "no community data yet; new to you",
+     "no community data yet; new to you"
+    ]
+   },
+   {
+    "picks": [
+     "node/1218773961",
+     "node/1498853504",
+     "node/1627725173",
+     "node/370308021"
+    ],
+    "legsM": [
+     400,
+     502,
+     600,
+     502,
+     201
+    ],
+    "totalM": 2205,
+    "stopPointIndex": [
+     1,
+     3,
+     5,
+     7
+    ],
+    "pointCount": 9,
+    "polyline": "cl|wFvjmbM?u\\sU??lFsD??`d@?yM|O?hJ?",
+    "durationS": 1646,
+    "score": 19.21481108774666,
+    "mode": "street",
+    "reasons": [
+     "no community data yet; new to you",
+     "no community data yet; new to you",
+     "no community data yet; new to you",
+     "no community data yet; new to you"
+    ]
+   }
+  ],
+  "6": [
+   {
+    "picks": [
+     "node/1218773961",
+     "node/1498853504",
+     "node/1627725173",
+     "node/370308021"
+    ],
+    "legsM": [
+     400,
+     502,
+     600,
+     502,
+     201
+    ],
+    "totalM": 2205,
+    "stopPointIndex": [
+     1,
+     3,
+     5,
+     7
+    ],
+    "pointCount": 9,
+    "polyline": "cl|wFvjmbM?u\\sU??lFsD??`d@?yM|O?hJ?",
+    "durationS": 1646,
+    "score": 17.12889050354485,
+    "mode": "street",
+    "reasons": [
+     "no community data yet; new to you",
+     "no community data yet; new to you",
+     "no community data yet; new to you",
+     "no community data yet; new to you"
+    ]
+   },
+   {
+    "picks": [
+     "node/370308021",
+     "node/1218773961",
+     "node/1911553616",
+     "node/1732766296"
+    ],
+    "legsM": [
+     201,
+     601,
+     301,
+     701,
+     402
+    ],
+    "totalM": 2206,
+    "stopPointIndex": [
+     1,
+     3,
+     5,
+     7
+    ],
+    "pointCount": 9,
+    "polyline": "cl|wFvjmbMiJ??u\\hJ??kFhJ??`d@hJ?sU?",
+    "durationS": 1646,
+    "score": 16.903306994142067,
+    "mode": "street",
+    "reasons": [
+     "no community data yet; new to you",
+     "no community data yet; new to you",
+     "no community data yet; new to you",
+     "no community data yet; new to you"
+    ]
+   },
+   {
+    "picks": [
+     "node/1218773961",
+     "node/1498853504",
+     "node/370308021",
+     "node/1732766296"
+    ],
+    "legsM": [
+     400,
+     502,
+     501,
+     604,
+     402
+    ],
+    "totalM": 2409,
+    "stopPointIndex": [
+     1,
+     3,
+     5,
+     6
+    ],
+    "pointCount": 8,
+    "polyline": "cl|wFvjmbM?u\\sU??lF?fUhJ?|`@?sU?",
+    "durationS": 1798,
+    "score": 16.825222174712266,
+    "mode": "street",
+    "reasons": [
+     "no community data yet; new to you",
+     "no community data yet; new to you",
+     "no community data yet; new to you",
+     "no community data yet; new to you"
+    ]
+   }
+  ],
+  "7": [
+   {
+    "picks": [
+     "node/1218773961",
+     "node/1498853504",
+     "node/370308021",
+     "node/1732766296"
+    ],
+    "legsM": [
+     400,
+     502,
+     501,
+     604,
+     402
+    ],
+    "totalM": 2409,
+    "stopPointIndex": [
+     1,
+     3,
+     5,
+     6
+    ],
+    "pointCount": 8,
+    "polyline": "cl|wFvjmbM?u\\sU??lF?fUhJ?|`@?sU?",
+    "durationS": 1798,
+    "score": 21.839724795409285,
+    "mode": "street",
+    "reasons": [
+     "no community data yet; new to you",
+     "no community data yet; new to you",
+     "no community data yet; new to you",
+     "no community data yet; new to you"
+    ]
+   },
+   {
+    "picks": [
+     "node/370308021",
+     "node/1218773961",
+     "node/1911553616",
+     "node/1732766296"
+    ],
+    "legsM": [
+     201,
+     601,
+     301,
+     701,
+     402
+    ],
+    "totalM": 2206,
+    "stopPointIndex": [
+     1,
+     3,
+     5,
+     7
+    ],
+    "pointCount": 9,
+    "polyline": "cl|wFvjmbMiJ??u\\hJ??kFhJ??`d@hJ?sU?",
+    "durationS": 1646,
+    "score": 21.494315526189336,
+    "mode": "street",
+    "reasons": [
+     "no community data yet; new to you",
+     "no community data yet; new to you",
+     "no community data yet; new to you",
+     "no community data yet; new to you"
+    ]
+   },
+   {
+    "picks": [
+     "node/1218773961",
+     "node/1498853504",
+     "node/1627725173",
+     "node/370308021"
+    ],
+    "legsM": [
+     400,
+     502,
+     600,
+     502,
+     201
+    ],
+    "totalM": 2205,
+    "stopPointIndex": [
+     1,
+     3,
+     5,
+     7
+    ],
+    "pointCount": 9,
+    "polyline": "cl|wFvjmbM?u\\sU??lFsD??`d@?yM|O?hJ?",
+    "durationS": 1646,
+    "score": 21.251117278237384,
+    "mode": "street",
+    "reasons": [
+     "no community data yet; new to you",
+     "no community data yet; new to you",
+     "no community data yet; new to you",
+     "no community data yet; new to you"
+    ]
+   }
+  ],
+  "8": [
+   {
+    "picks": [
+     "node/370308021",
+     "node/1218773961",
+     "node/1911553616",
+     "node/1732766296"
+    ],
+    "legsM": [
+     201,
+     601,
+     301,
+     701,
+     402
+    ],
+    "totalM": 2206,
+    "stopPointIndex": [
+     1,
+     3,
+     5,
+     7
+    ],
+    "pointCount": 9,
+    "polyline": "cl|wFvjmbMiJ??u\\hJ??kFhJ??`d@hJ?sU?",
+    "durationS": 1646,
+    "score": 18.81383063525153,
+    "mode": "street",
+    "reasons": [
+     "no community data yet; new to you",
+     "no community data yet; new to you",
+     "no community data yet; new to you",
+     "no community data yet; new to you"
+    ]
+   },
+   {
+    "picks": [
+     "node/1218773961",
+     "node/1498853504",
+     "node/370308021",
+     "node/1732766296"
+    ],
+    "legsM": [
+     400,
+     502,
+     501,
+     604,
+     402
+    ],
+    "totalM": 2409,
+    "stopPointIndex": [
+     1,
+     3,
+     5,
+     6
+    ],
+    "pointCount": 8,
+    "polyline": "cl|wFvjmbM?u\\sU??lF?fUhJ?|`@?sU?",
+    "durationS": 1798,
+    "score": 18.61881148058995,
+    "mode": "street",
+    "reasons": [
+     "no community data yet; new to you",
+     "no community data yet; new to you",
+     "no community data yet; new to you",
+     "no community data yet; new to you"
+    ]
+   },
+   {
+    "picks": [
+     "node/1218773961",
+     "node/1498853504",
+     "node/1627725173",
+     "node/370308021"
+    ],
+    "legsM": [
+     400,
+     502,
+     600,
+     502,
+     201
+    ],
+    "totalM": 2205,
+    "stopPointIndex": [
+     1,
+     3,
+     5,
+     7
+    ],
+    "pointCount": 9,
+    "polyline": "cl|wFvjmbM?u\\sU??lFsD??`d@?yM|O?hJ?",
+    "durationS": 1646,
+    "score": 18.321513641972583,
+    "mode": "street",
+    "reasons": [
+     "no community data yet; new to you",
+     "no community data yet; new to you",
+     "no community data yet; new to you",
+     "no community data yet; new to you"
+    ]
+   }
+  ],
+  "9": [
+   {
+    "picks": [
+     "node/1218773961",
+     "node/1498853504",
+     "node/370308021",
+     "node/1732766296"
+    ],
+    "legsM": [
+     400,
+     502,
+     501,
+     604,
+     402
+    ],
+    "totalM": 2409,
+    "stopPointIndex": [
+     1,
+     3,
+     5,
+     6
+    ],
+    "pointCount": 8,
+    "polyline": "cl|wFvjmbM?u\\sU??lF?fUhJ?|`@?sU?",
+    "durationS": 1798,
+    "score": 17.99556577641591,
+    "mode": "street",
+    "reasons": [
+     "no community data yet; new to you",
+     "no community data yet; new to you",
+     "no community data yet; new to you",
+     "no community data yet; new to you"
+    ]
+   },
+   {
+    "picks": [
+     "node/1218773961",
+     "node/1498853504",
+     "node/1627725173",
+     "node/370308021"
+    ],
+    "legsM": [
+     400,
+     502,
+     600,
+     502,
+     201
+    ],
+    "totalM": 2205,
+    "stopPointIndex": [
+     1,
+     3,
+     5,
+     7
+    ],
+    "pointCount": 9,
+    "polyline": "cl|wFvjmbM?u\\sU??lFsD??`d@?yM|O?hJ?",
+    "durationS": 1646,
+    "score": 17.42094884027962,
+    "mode": "street",
+    "reasons": [
+     "no community data yet; new to you",
+     "no community data yet; new to you",
+     "no community data yet; new to you",
+     "no community data yet; new to you"
+    ]
+   },
+   {
+    "picks": [
+     "node/370308021",
+     "node/1218773961",
+     "node/1911553616",
+     "node/1732766296"
+    ],
+    "legsM": [
+     201,
+     601,
+     301,
+     701,
+     402
+    ],
+    "totalM": 2206,
+    "stopPointIndex": [
+     1,
+     3,
+     5,
+     7
+    ],
+    "pointCount": 9,
+    "polyline": "cl|wFvjmbMiJ??u\\hJ??kFhJ??`d@hJ?sU?",
+    "durationS": 1646,
+    "score": 17.412278792562017,
+    "mode": "street",
+    "reasons": [
+     "no community data yet; new to you",
+     "no community data yet; new to you",
+     "no community data yet; new to you",
+     "no community data yet; new to you"
+    ]
+   }
+  ]
+ },
+ "gridLoved": [
+  {
+   "picks": [
+    "node/1218773961",
+    "node/1498853504",
+    "node/370308021",
+    "node/1732766296"
+   ],
+   "legsM": [
+    400,
+    502,
+    501,
+    604,
+    402
+   ],
+   "totalM": 2409,
+   "stopPointIndex": [
+    1,
+    3,
+    5,
+    6
+   ],
+   "pointCount": 8,
+   "polyline": "cl|wFvjmbM?u\\sU??lF?fUhJ?|`@?sU?",
+   "durationS": 1798,
+   "score": 20.407906810644892,
+   "mode": "street",
+   "reasons": [
+    "no community data yet; new to you",
+    "12 people visited, 30 notes, 12 photos; new to you",
+    "no community data yet; new to you",
+    "no community data yet; new to you"
+   ]
+  },
+  {
+   "picks": [
+    "node/1218773961",
+    "node/1498853504",
+    "node/1627725173",
+    "node/370308021"
+   ],
+   "legsM": [
+    400,
+    502,
+    600,
+    502,
+    201
+   ],
+   "totalM": 2205,
+   "stopPointIndex": [
+    1,
+    3,
+    5,
+    7
+   ],
+   "pointCount": 9,
+   "polyline": "cl|wFvjmbM?u\\sU??lFsD??`d@?yM|O?hJ?",
+   "durationS": 1646,
+   "score": 19.544334031059968,
+   "mode": "street",
+   "reasons": [
+    "no community data yet; new to you",
+    "12 people visited, 30 notes, 12 photos; new to you",
+    "no community data yet; new to you",
+    "no community data yet; new to you"
+   ]
+  },
+  {
+   "picks": [
+    "node/1218773961",
+    "node/1498853504",
+    "node/370308021",
+    "node/1561782983"
+   ],
+   "legsM": [
+    400,
+    502,
+    501,
+    701,
+    499
+   ],
+   "totalM": 2603,
+   "stopPointIndex": [
+    1,
+    3,
+    5,
+    7
+   ],
+   "pointCount": 9,
+   "polyline": "cl|wFvjmbM?u\\sU??lF?fUhJ??`d@hJ??ad@",
+   "durationS": 1943,
+   "score": 18.80186662820992,
+   "mode": "street",
+   "reasons": [
+    "no community data yet; new to you",
+    "12 people visited, 30 notes, 12 photos; new to you",
+    "no community data yet; new to you",
+    "no community data yet; new to you"
+   ]
+  }
+ ],
+ "gridLovedRadius100": [
+  {
+   "picks": [
+    "node/1218773961",
+    "node/1498853504",
+    "node/370308021",
+    "node/1732766296"
+   ],
+   "legsM": [
+    400,
+    502,
+    501,
+    604,
+    402
+   ],
+   "totalM": 2409,
+   "stopPointIndex": [
+    1,
+    3,
+    5,
+    6
+   ],
+   "pointCount": 8,
+   "polyline": "cl|wFvjmbM?u\\sU??lF?fUhJ?|`@?sU?",
+   "durationS": 1798,
+   "score": 19.016194085665788,
+   "mode": "street",
+   "reasons": [
+    "no community data yet; new to you",
+    "no community data yet; new to you",
+    "no community data yet; new to you",
+    "no community data yet; new to you"
+   ]
+  },
+  {
+   "picks": [
+    "node/1218773961",
+    "node/1498853504",
+    "node/1627725173",
+    "node/370308021"
+   ],
+   "legsM": [
+    400,
+    502,
+    600,
+    502,
+    201
+   ],
+   "totalM": 2205,
+   "stopPointIndex": [
+    1,
+    3,
+    5,
+    7
+   ],
+   "pointCount": 9,
+   "polyline": "cl|wFvjmbM?u\\sU??lFsD??`d@?yM|O?hJ?",
+   "durationS": 1646,
+   "score": 18.15262130608086,
+   "mode": "street",
+   "reasons": [
+    "no community data yet; new to you",
+    "no community data yet; new to you",
+    "no community data yet; new to you",
+    "no community data yet; new to you"
+   ]
+  },
+  {
+   "picks": [
+    "node/1732766296",
+    "node/1911553616",
+    "node/1218773961",
+    "node/370308021"
+   ],
+   "legsM": [
+    402,
+    701,
+    301,
+    601,
+    201
+   ],
+   "totalM": 2206,
+   "stopPointIndex": [
+    1,
+    3,
+    5,
+    7
+   ],
+   "pointCount": 9,
+   "polyline": "cl|wFvjmbMrU?iJ??ad@iJ??jFiJ??t\\hJ?",
+   "durationS": 1646,
+   "score": 17.688705465497502,
+   "mode": "street",
+   "reasons": [
+    "no community data yet; new to you",
+    "no community data yet; new to you",
+    "no community data yet; new to you",
+    "no community data yet; new to you"
+   ]
+  }
+ ],
+ "gridLovedRadius2000": [
+  {
+   "picks": [
+    "node/1218773961",
+    "node/1498853504",
+    "node/370308021",
+    "node/1732766296"
+   ],
+   "legsM": [
+    400,
+    502,
+    501,
+    604,
+    402
+   ],
+   "totalM": 2409,
+   "stopPointIndex": [
+    1,
+    3,
+    5,
+    6
+   ],
+   "pointCount": 8,
+   "polyline": "cl|wFvjmbM?u\\sU??lF?fUhJ?|`@?sU?",
+   "durationS": 1798,
+   "score": 20.407906810644892,
+   "mode": "street",
+   "reasons": [
+    "no community data yet; new to you",
+    "12 people visited, 30 notes, 12 photos; new to you",
+    "no community data yet; new to you",
+    "no community data yet; new to you"
+   ]
+  },
+  {
+   "picks": [
+    "node/1218773961",
+    "node/1498853504",
+    "node/1627725173",
+    "node/370308021"
+   ],
+   "legsM": [
+    400,
+    502,
+    600,
+    502,
+    201
+   ],
+   "totalM": 2205,
+   "stopPointIndex": [
+    1,
+    3,
+    5,
+    7
+   ],
+   "pointCount": 9,
+   "polyline": "cl|wFvjmbM?u\\sU??lFsD??`d@?yM|O?hJ?",
+   "durationS": 1646,
+   "score": 19.544334031059968,
+   "mode": "street",
+   "reasons": [
+    "no community data yet; new to you",
+    "12 people visited, 30 notes, 12 photos; new to you",
+    "no community data yet; new to you",
+    "no community data yet; new to you"
+   ]
+  },
+  {
+   "picks": [
+    "node/1218773961",
+    "node/1498853504",
+    "node/370308021",
+    "node/1561782983"
+   ],
+   "legsM": [
+    400,
+    502,
+    501,
+    701,
+    499
+   ],
+   "totalM": 2603,
+   "stopPointIndex": [
+    1,
+    3,
+    5,
+    7
+   ],
+   "pointCount": 9,
+   "polyline": "cl|wFvjmbM?u\\sU??lF?fUhJ??`d@hJ??ad@",
+   "durationS": 1943,
+   "score": 18.80186662820992,
+   "mode": "street",
+   "reasons": [
+    "no community data yet; new to you",
+    "12 people visited, 30 notes, 12 photos; new to you",
+    "no community data yet; new to you",
+    "no community data yet; new to you"
+   ]
+  }
+ ],
+ "gridVisited": [
+  {
+   "picks": [
+    "node/1561782983",
+    "node/1627725173",
+    "node/1498853504",
+    "node/370308021"
+   ],
+   "legsM": [
+    499,
+    803,
+    600,
+    501,
+    201
+   ],
+   "totalM": 2604,
+   "stopPointIndex": [
+    1,
+    3,
+    5,
+    7
+   ],
+   "pointCount": 9,
+   "polyline": "cl|wFvjmbM?`d@g[??gU?ad@rD??fUhJ?hJ?",
+   "durationS": 1943,
+   "score": 9.538234509285095,
+   "mode": "street",
+   "reasons": [
+    "no community data yet; new to you",
+    "no community data yet; new to you",
+    "no community data yet; you visited 1x, last 1 days ago",
+    "no community data yet; you visited 1x, last 1 days ago"
+   ]
+  },
+  {
+   "picks": [
+    "node/370308021",
+    "node/1627725173",
+    "node/1498853504",
+    "node/1218773961"
+   ],
+   "legsM": [
+    201,
+    502,
+    600,
+    502,
+    400
+   ],
+   "totalM": 2205,
+   "stopPointIndex": [
+    1,
+    3,
+    5,
+    7
+   ],
+   "pointCount": 9,
+   "polyline": "cl|wFvjmbMiJ?}O??xM?ad@rD??mFrU??t\\",
+   "durationS": 1646,
+   "score": 9.444653237256768,
+   "mode": "street",
+   "reasons": [
+    "no community data yet; you visited 1x, last 1 days ago",
+    "no community data yet; new to you",
+    "no community data yet; you visited 1x, last 1 days ago",
+    "no community data yet; you visited 1x, last 1 days ago"
+   ]
+  },
+  {
+   "picks": [
+    "node/370308021",
+    "node/1218773961",
+    "node/1911553616",
+    "node/1732766296"
+   ],
+   "legsM": [
+    201,
+    601,
+    301,
+    701,
+    402
+   ],
+   "totalM": 2206,
+   "stopPointIndex": [
+    1,
+    3,
+    5,
+    7
+   ],
+   "pointCount": 9,
+   "polyline": "cl|wFvjmbMiJ??u\\hJ??kFhJ??`d@hJ?sU?",
+   "durationS": 1646,
+   "score": 8.768507295620957,
+   "mode": "street",
+   "reasons": [
+    "no community data yet; you visited 1x, last 1 days ago",
+    "no community data yet; you visited 1x, last 1 days ago",
+    "no community data yet; new to you",
+    "no community data yet; you visited 1x, last 1 days ago"
+   ]
+  }
+ ],
+ "gridStraight": [
+  {
+   "picks": [
+    "node/1732766296",
+    "node/1218773961",
+    "node/1498853504",
+    "node/370308021"
+   ],
+   "legsM": [
+    523,
+    737,
+    539,
+    469,
+    262
+   ],
+   "totalM": 2530,
+   "stopPointIndex": [
+    1,
+    2,
+    3,
+    4
+   ],
+   "pointCount": 6,
+   "polyline": "cl|wFvjmbMrU?sUu\\sUlFhJfUhJ?",
+   "durationS": 1888,
+   "score": 18.826294768381697,
+   "mode": "straight",
+   "reasons": [
+    "no community data yet; new to you",
+    "no community data yet; new to you",
+    "no community data yet; new to you",
+    "no community data yet; new to you"
+   ]
+  },
+  {
+   "picks": [
+    "node/370308021",
+    "node/1627725173",
+    "node/1498853504",
+    "node/1218773961"
+   ],
+   "legsM": [
+    262,
+    470,
+    662,
+    539,
+    519
+   ],
+   "totalM": 2452,
+   "stopPointIndex": [
+    1,
+    2,
+    3,
+    4
+   ],
+   "pointCount": 6,
+   "polyline": "cl|wFvjmbMiJ?}OxMrDad@rUmF?t\\",
+   "durationS": 1830,
+   "score": 18.42926528219419,
+   "mode": "straight",
+   "reasons": [
+    "no community data yet; new to you",
+    "no community data yet; new to you",
+    "no community data yet; new to you",
+    "no community data yet; new to you"
+   ]
+  },
+  {
+   "picks": [
+    "node/370308021",
+    "node/1218773961",
+    "node/1911553616",
+    "node/1732766296"
+   ],
+   "legsM": [
+    262,
+    582,
+    292,
+    700,
+    523
+   ],
+   "totalM": 2359,
+   "stopPointIndex": [
+    1,
+    2,
+    3,
+    4
+   ],
+   "pointCount": 6,
+   "polyline": "cl|wFvjmbMiJ?hJu\\hJkFhJ`d@sU?",
+   "durationS": 1760,
+   "score": 17.94105675783111,
+   "mode": "straight",
+   "reasons": [
+    "no community data yet; new to you",
+    "no community data yet; new to you",
+    "no community data yet; new to you",
+    "no community data yet; new to you"
+   ]
+  }
+ ],
+ "gridDistance1500": [
+  {
+   "picks": [
+    "node/1218773961",
+    "node/1498853504",
+    "node/370308021"
+   ],
+   "legsM": [
+    400,
+    502,
+    501,
+    201
+   ],
+   "totalM": 1604,
+   "stopPointIndex": [
+    1,
+    3,
+    5
+   ],
+   "pointCount": 7,
+   "polyline": "cl|wFvjmbM?u\\sU??lF?fUhJ?hJ?",
+   "durationS": 1197,
+   "score": 14.680917561632757,
+   "mode": "street",
+   "reasons": [
+    "no community data yet; new to you",
+    "no community data yet; new to you",
+    "no community data yet; new to you"
+   ]
+  },
+  {
+   "picks": [
+    "node/1218773961",
+    "node/1911553616"
+   ],
+   "legsM": [
+    400,
+    301,
+    701
+   ],
+   "totalM": 1402,
+   "stopPointIndex": [
+    1,
+    3
+   ],
+   "pointCount": 6,
+   "polyline": "cl|wFvjmbM?u\\?kFhJ?iJ??`d@",
+   "durationS": 1046,
+   "score": 9.216274437574757,
+   "mode": "street",
+   "reasons": [
+    "no community data yet; new to you",
+    "no community data yet; new to you"
+   ]
+  },
+  {
+   "picks": [
+    "node/370308021",
+    "node/1627725173"
+   ],
+   "legsM": [
+    201,
+    502,
+    703
+   ],
+   "totalM": 1406,
+   "stopPointIndex": [
+    1,
+    3
+   ],
+   "pointCount": 6,
+   "polyline": "cl|wFvjmbMiJ?}O??xM?yMf[?",
+   "durationS": 1049,
+   "score": 7.773388051203628,
+   "mode": "street",
+   "reasons": [
+    "no community data yet; new to you",
+    "no community data yet; new to you"
+   ]
+  }
+ ],
+ "real": {
+  "20/0": [
+   {
+    "picks": [
+     "way/388310491",
+     "way/580520662",
+     "node/13767747443"
+    ],
+    "legsM": [
+     386,
+     460,
+     293,
+     616
+    ],
+    "totalM": 1755,
+    "stopPointIndex": [
+     11,
+     24,
+     38
+    ],
+    "pointCount": 56,
+    "polyline": "cl|wFvjmbMfAp@Q|@?~AK`@UhDRl@dBhAv@tAf@fBOl@?t@JzARd@`@^d@NbCAl@l@p@fAJQfAzAh@OP\\fBpAr@k@@i@McBYcAFmAe@a@DKGu@LOu@wAc@UGPECENAEQGs@pAi@OYDsAw@s@kA_E_CiA}@K^}AcAS}@PoABiAJa@?_BP}@gAq@",
+    "durationS": 1310,
+    "score": 7.480464705640271,
+    "mode": "street",
+    "reasons": [
+     "no community data yet; new to you",
+     "no community data yet; new to you",
+     "no community data yet; new to you"
+    ]
+   },
+   {
+    "picks": [
+     "way/388310491",
+     "node/7641177124"
+    ],
+    "legsM": [
+     386,
+     482,
+     868
+    ],
+    "totalM": 1736,
+    "stopPointIndex": [
+     11,
+     21
+    ],
+    "pointCount": 44,
+    "polyline": "cl|wFvjmbMfAp@Q|@?~AK`@UhDRl@dBhAv@tAf@fBOl@?t@FjAVt@j@d@|@Jq@dAuB`Ao@fCpEzCAXv@f@w@g@@YqE{Cn@gCtBaAp@eA}@Ks@q@Qw@GmBPs@g@gBw@uAeBiAOe@CWPoABiAJa@?_BP}@gAq@",
+    "durationS": 1296,
+    "score": 5.835826915329135,
+    "mode": "street",
+    "reasons": [
+     "no community data yet; new to you",
+     "no community data yet; new to you"
+    ]
+   },
+   {
+    "picks": [
+     "way/388310491",
+     "way/270730782"
+    ],
+    "legsM": [
+     386,
+     529,
+     576
+    ],
+    "totalM": 1491,
+    "stopPointIndex": [
+     11,
+     22
+    ],
+    "pointCount": 40,
+    "polyline": "cl|wFvjmbMfAp@Q|@?~AK`@UhDRl@dBhAv@tAf@fBOl@?t@FjAVt@j@d@|@Jq@dAuB`A]rA{ByAUp@gFgDCDBE_C}ATs@UQZcAz@wANuBzAoBTK~AKr@{@N_ABiAJa@?_BP}@gAq@",
+    "durationS": 1113,
+    "score": 4.821825371441381,
+    "mode": "street",
+    "reasons": [
+     "no community data yet; new to you",
+     "no community data yet; new to you"
+    ]
+   }
+  ],
+  "20/1": [
+   {
+    "picks": [
+     "way/388310491",
+     "node/7641177124"
+    ],
+    "legsM": [
+     386,
+     482,
+     868
+    ],
+    "totalM": 1736,
+    "stopPointIndex": [
+     11,
+     21
+    ],
+    "pointCount": 44,
+    "polyline": "cl|wFvjmbMfAp@Q|@?~AK`@UhDRl@dBhAv@tAf@fBOl@?t@FjAVt@j@d@|@Jq@dAuB`Ao@fCpEzCAXv@f@w@g@@YqE{Cn@gCtBaAp@eA}@Ks@q@Qw@GmBPs@g@gBw@uAeBiAOe@CWPoABiAJa@?_BP}@gAq@",
+    "durationS": 1296,
+    "score": 6.903814560001529,
+    "mode": "street",
+    "reasons": [
+     "no community data yet; new to you",
+     "no community data yet; new to you"
+    ]
+   },
+   {
+    "picks": [
+     "way/388310491",
+     "way/580520662",
+     "node/13767747443"
+    ],
+    "legsM": [
+     386,
+     460,
+     293,
+     616
+    ],
+    "totalM": 1755,
+    "stopPointIndex": [
+     11,
+     24,
+     38
+    ],
+    "pointCount": 56,
+    "polyline": "cl|wFvjmbMfAp@Q|@?~AK`@UhDRl@dBhAv@tAf@fBOl@?t@JzARd@`@^d@NbCAl@l@p@fAJQfAzAh@OP\\fBpAr@k@@i@McBYcAFmAe@a@DKGu@LOu@wAc@UGPECENAEQGs@pAi@OYDsAw@s@kA_E_CiA}@K^}AcAS}@PoABiAJa@?_BP}@gAq@",
+    "durationS": 1310,
+    "score": 6.745413729363873,
+    "mode": "street",
+    "reasons": [
+     "no community data yet; new to you",
+     "no community data yet; new to you",
+     "no community data yet; new to you"
+    ]
+   },
+   {
+    "picks": [
+     "way/266932812"
+    ],
+    "legsM": [
+     836,
+     836
+    ],
+    "totalM": 1672,
+    "stopPointIndex": [
+     17
+    ],
+    "pointCount": 35,
+    "polyline": "cl|wFvjmbMfAp@z@oAlA]F}@Vm@ZiCf@y@\\M`@eAHaBXgBfBqBLKFDRk@dBhAtFeQuFdQeBiASj@GEMJgBpBYfBI`Ba@dA]Lg@x@[hCWl@G|@mA\\{@nAgAq@",
+    "durationS": 1248,
+    "score": 4.294997569495316,
+    "mode": "street",
+    "reasons": [
+     "no community data yet; new to you"
+    ]
+   }
+  ],
+  "20/2": [
+   {
+    "picks": [
+     "way/388310491",
+     "way/580520662",
+     "node/13767747443"
+    ],
+    "legsM": [
+     386,
+     460,
+     293,
+     616
+    ],
+    "totalM": 1755,
+    "stopPointIndex": [
+     11,
+     24,
+     38
+    ],
+    "pointCount": 56,
+    "polyline": "cl|wFvjmbMfAp@Q|@?~AK`@UhDRl@dBhAv@tAf@fBOl@?t@JzARd@`@^d@NbCAl@l@p@fAJQfAzAh@OP\\fBpAr@k@@i@McBYcAFmAe@a@DKGu@LOu@wAc@UGPECENAEQGs@pAi@OYDsAw@s@kA_E_CiA}@K^}AcAS}@PoABiAJa@?_BP}@gAq@",
+    "durationS": 1310,
+    "score": 6.626366028005078,
+    "mode": "street",
+    "reasons": [
+     "no community data yet; new to you",
+     "no community data yet; new to you",
+     "no community data yet; new to you"
+    ]
+   },
+   {
+    "picks": [
+     "way/388310491",
+     "way/270730782"
+    ],
+    "legsM": [
+     386,
+     529,
+     576
+    ],
+    "totalM": 1491,
+    "stopPointIndex": [
+     11,
+     22
+    ],
+    "pointCount": 40,
+    "polyline": "cl|wFvjmbMfAp@Q|@?~AK`@UhDRl@dBhAv@tAf@fBOl@?t@FjAVt@j@d@|@Jq@dAuB`A]rA{ByAUp@gFgDCDBE_C}ATs@UQZcAz@wANuBzAoBTK~AKr@{@N_ABiAJa@?_BP}@gAq@",
+    "durationS": 1113,
+    "score": 5.332023583111304,
+    "mode": "street",
+    "reasons": [
+     "no community data yet; new to you",
+     "no community data yet; new to you"
+    ]
+   },
+   {
+    "picks": [
+     "way/388310491",
+     "node/7641177124"
+    ],
+    "legsM": [
+     386,
+     482,
+     868
+    ],
+    "totalM": 1736,
+    "stopPointIndex": [
+     11,
+     21
+    ],
+    "pointCount": 44,
+    "polyline": "cl|wFvjmbMfAp@Q|@?~AK`@UhDRl@dBhAv@tAf@fBOl@?t@FjAVt@j@d@|@Jq@dAuB`Ao@fCpEzCAXv@f@w@g@@YqE{Cn@gCtBaAp@eA}@Ks@q@Qw@GmBPs@g@gBw@uAeBiAOe@CWPoABiAJa@?_BP}@gAq@",
+    "durationS": 1296,
+    "score": 5.249476533954777,
+    "mode": "street",
+    "reasons": [
+     "no community data yet; new to you",
+     "no community data yet; new to you"
+    ]
+   }
+  ],
+  "30/0": [
+   {
+    "picks": [
+     "way/388310491",
+     "node/13767747443",
+     "node/7641177124",
+     "way/270730782"
+    ],
+    "legsM": [
+     386,
+     329,
+     498,
+     413,
+     576
+    ],
+    "totalM": 2202,
+    "stopPointIndex": [
+     11,
+     22,
+     40,
+     44
+    ],
+    "pointCount": 62,
+    "polyline": "cl|wFvjmbMfAp@Q|@?~AK`@UhDRl@dBhAv@tAf@fBOl@?t@?u@Nm@~@Bv@S~@Bz@`A`Af@XEh@Nr@qAPFQGs@pAb@n@A~@I^WFa@~A[h@h@fAaA~AAfAi@Pq@I[LGPn@`@UnAQMw@g@@YyP_LCDBE_C}ATs@UQZcAz@wANuBzAoBTK~AKr@{@N_ABiAJa@?_BP}@gAq@",
+    "durationS": 1643,
+    "score": 13.978010263692655,
+    "mode": "street",
+    "reasons": [
+     "no community data yet; new to you",
+     "no community data yet; new to you",
+     "no community data yet; new to you",
+     "no community data yet; new to you"
+    ]
+   },
+   {
+    "picks": [
+     "way/270730782",
+     "node/7641177124",
+     "node/7106318826",
+     "way/388310491"
+    ],
+    "legsM": [
+     576,
+     413,
+     200,
+     555,
+     386
+    ],
+    "totalM": 2130,
+    "stopPointIndex": [
+     17,
+     21,
+     26,
+     42
+    ],
+    "pointCount": 54,
+    "polyline": "cl|wFvjmbMfAp@Q|@?~AK`@ChAO~@s@z@_BJUJ{AnBOtB{@vA[bATPUr@~B|ACDBExP~KAXv@f@t@f@NQnD`C\\k@VNKGFOz@{@Zk@@Sq@Qm@q@g@yBi@i@UaAyAaCs@o@}BBq@Wi@}@K{A?u@Nm@g@gBw@uAeBiASm@TiDJa@?_BP}@gAq@",
+    "durationS": 1590,
+    "score": 13.603017486064997,
+    "mode": "street",
+    "reasons": [
+     "no community data yet; new to you",
+     "no community data yet; new to you",
+     "no community data yet; new to you",
+     "no community data yet; new to you"
+    ]
+   },
+   {
+    "picks": [
+     "way/270730782",
+     "way/269307361",
+     "node/10172954998",
+     "way/388310491"
+    ],
+    "legsM": [
+     576,
+     565,
+     185,
+     570,
+     386
+    ],
+    "totalM": 2282,
+    "stopPointIndex": [
+     17,
+     20,
+     27,
+     42
+    ],
+    "pointCount": 54,
+    "polyline": "cl|wFvjmbMfAp@Q|@?~AK`@ChAO~@s@z@_BJUJ{AnBOtB{@vA[bATPUr@~B|ACDiFpPpJjGu@|Bt@}BJF`@i@j@KZRd@Ej@HQYIu@f@aB@oCb@kBMY`@_Ai@a@n@gCtBaAp@eA}@Kk@e@Wu@GkA?u@Nm@g@gBw@uAeBiASm@TiDJa@?_BP}@gAq@",
+    "durationS": 1703,
+    "score": 12.56932808504156,
+    "mode": "street",
+    "reasons": [
+     "no community data yet; new to you",
+     "no community data yet; new to you",
+     "no community data yet; new to you",
+     "no community data yet; new to you"
+    ]
+   }
+  ],
+  "30/1": [
+   {
+    "picks": [
+     "way/388310491",
+     "node/13767747443",
+     "node/7641177124",
+     "way/270730782"
+    ],
+    "legsM": [
+     386,
+     329,
+     498,
+     413,
+     576
+    ],
+    "totalM": 2202,
+    "stopPointIndex": [
+     11,
+     22,
+     40,
+     44
+    ],
+    "pointCount": 62,
+    "polyline": "cl|wFvjmbMfAp@Q|@?~AK`@UhDRl@dBhAv@tAf@fBOl@?t@?u@Nm@~@Bv@S~@Bz@`A`Af@XEh@Nr@qAPFQGs@pAb@n@A~@I^WFa@~A[h@h@fAaA~AAfAi@Pq@I[LGPn@`@UnAQMw@g@@YyP_LCDBE_C}ATs@UQZcAz@wANuBzAoBTK~AKr@{@N_ABiAJa@?_BP}@gAq@",
+    "durationS": 1643,
+    "score": 13.88525990511111,
+    "mode": "street",
+    "reasons": [
+     "no community data yet; new to you",
+     "no community data yet; new to you",
+     "no community data yet; new to you",
+     "no community data yet; new to you"
+    ]
+   },
+   {
+    "picks": [
+     "way/388310491",
+     "node/7106318826",
+     "node/7641177124",
+     "way/270730782"
+    ],
+    "legsM": [
+     386,
+     555,
+     200,
+     413,
+     576
+    ],
+    "totalM": 2130,
+    "stopPointIndex": [
+     11,
+     27,
+     32,
+     36
+    ],
+    "pointCount": 54,
+    "polyline": "cl|wFvjmbMfAp@Q|@?~AK`@UhDRl@dBhAv@tAf@fBOl@?t@JzAh@|@p@V|BCr@n@xA`CT`Ah@h@f@xBl@p@p@PAR[j@{@z@GNJFWO]j@oDaCOPu@g@w@g@@YyP_LCDBE_C}ATs@UQZcAz@wANuBzAoBTK~AKr@{@N_ABiAJa@?_BP}@gAq@",
+    "durationS": 1590,
+    "score": 13.397990430324644,
+    "mode": "street",
+    "reasons": [
+     "no community data yet; new to you",
+     "no community data yet; new to you",
+     "no community data yet; new to you",
+     "no community data yet; new to you"
+    ]
+   },
+   {
+    "picks": [
+     "way/959001284",
+     "way/266928800",
+     "way/266932812"
+    ],
+    "legsM": [
+     895,
+     419,
+     380,
+     836
+    ],
+    "totalM": 2530,
+    "stopPointIndex": [
+     22,
+     26,
+     29
+    ],
+    "pointCount": 47,
+    "polyline": "cl|wFvjmbMfAp@b@w@h@a@d@QdA@`B\\|Az@n@g@`@Bb@Pr@t@jAPJHvAsB|@EVOh@w@|@u@l@iA`Ao@b@_AjHzEqFqDHo@iCgBdCcIuCkBjBaG{FyDuFdQeBiASj@GEMJgBpBYfBI`Ba@dA]Lg@x@[hCWl@G|@mA\\{@nAgAq@",
+    "durationS": 1888,
+    "score": 11.577119233916871,
+    "mode": "street",
+    "reasons": [
+     "no community data yet; new to you",
+     "no community data yet; new to you",
+     "no community data yet; new to you"
+    ]
+   }
+  ],
+  "30/2": [
+   {
+    "picks": [
+     "way/270730782",
+     "way/269307361",
+     "node/10172954998",
+     "node/7641177124"
+    ],
+    "legsM": [
+     576,
+     565,
+     185,
+     397,
+     868
+    ],
+    "totalM": 2591,
+    "stopPointIndex": [
+     17,
+     20,
+     27,
+     37
+    ],
+    "pointCount": 60,
+    "polyline": "cl|wFvjmbMfAp@Q|@?~AK`@ChAO~@s@z@_BJUJ{AnBOtB{@vA[bATPUr@~B|ACDiFpPpJjGu@|Bt@}BJF`@i@j@KZRd@Ej@HQYIu@f@aB@oCb@kBMY`@_AfDxBAXv@f@w@g@@YqE{Cn@gCtBaAp@eA}@Ks@q@Qw@GmBPs@g@gBw@uAeBiAOe@CWPoABiAJa@?_BP}@gAq@",
+    "durationS": 1934,
+    "score": 15.226184520459336,
+    "mode": "street",
+    "reasons": [
+     "no community data yet; new to you",
+     "no community data yet; new to you",
+     "no community data yet; new to you",
+     "no community data yet; new to you"
+    ]
+   },
+   {
+    "picks": [
+     "way/270730782",
+     "node/7106318826",
+     "node/13767747443"
+    ],
+    "legsM": [
+     576,
+     596,
+     515,
+     616
+    ],
+    "totalM": 2303,
+    "stopPointIndex": [
+     17,
+     21,
+     41
+    ],
+    "pointCount": 59,
+    "polyline": "cl|wFvjmbMfAp@Q|@?~AK`@ChAO~@s@z@_BJUJ{AnBOtB{@vA[bATPUr@~B|ACDBEdZxR\\k@VNKGFOz@{@^u@GOk@Km@q@a@kBWg@]WOy@g@y@Zi@`@_BVGH_@@_Ac@o@r@qAPFQGs@pAi@OYDsAw@s@kA_E_CiA}@K^}AcAS}@PoABiAJa@?_BP}@gAq@",
+    "durationS": 1719,
+    "score": 13.229890650080263,
+    "mode": "street",
+    "reasons": [
+     "no community data yet; new to you",
+     "no community data yet; new to you",
+     "no community data yet; new to you"
+    ]
+   },
+   {
+    "picks": [
+     "way/959001284",
+     "node/5356834803",
+     "way/266932812"
+    ],
+    "legsM": [
+     895,
+     347,
+     533,
+     836
+    ],
+    "totalM": 2611,
+    "stopPointIndex": [
+     22,
+     25,
+     28
+    ],
+    "pointCount": 46,
+    "polyline": "cl|wFvjmbMfAp@b@w@h@a@d@QdA@`B\\|Az@n@g@`@Bb@Pr@t@jAPJHvAsB|@EVOh@w@|@u@l@iA`Ao@b@_AjHzEIGLm@tGuSkKaHa@lA}JuGuFdQeBiASj@GEMJgBpBYfBI`Ba@dA]Lg@x@[hCWl@G|@mA\\{@nAgAq@",
+    "durationS": 1949,
+    "score": 13.147743161481456,
+    "mode": "street",
+    "reasons": [
+     "no community data yet; new to you",
+     "no community data yet; new to you",
+     "no community data yet; new to you"
+    ]
+   }
+  ],
+  "75/0": [
+   {
+    "picks": [
+     "way/270730782",
+     "way/388310491",
+     "node/13767747443",
+     "node/10828746354",
+     "way/959001284",
+     "way/266928800"
+    ],
+    "legsM": [
+     576,
+     529,
+     329,
+     773,
+     695,
+     419,
+     941
+    ],
+    "totalM": 4262,
+    "stopPointIndex": [
+     17,
+     28,
+     39,
+     65,
+     86,
+     90
+    ],
+    "pointCount": 114,
+    "polyline": "cl|wFvjmbMfAp@Q|@?~AK`@ChAO~@s@z@_BJUJ{AnBOtB{@vA[bATPUr@~B|ACDBEfFfDTq@zBxA\\sAtBaAp@eA}@Kk@e@Wu@GkA?u@Nm@~@Bv@S~@Bz@`A`Af@XEh@Nr@qAPF@DDODBFQn@`@h@jAMNDjA~B`Ax@|@n@Ax@d@b@ALXMV~@jAr@`@lA?v@l@XBdBqAl@}@RKtAPz@[Fp@Gq@SSG]Ng@VI?Y[mAm@iAKmB_@}@z@_Bo@uCCgAH[_BmBS_BNcAk@o@\\UXi@aBeAqFqDHo@iCgBdCcIyCnJxA`AWp@mA|@m@hA}@t@i@v@WN}@DwArBKIkAQs@u@c@Qa@Co@f@}A{@aB]eAAe@Pi@`@c@v@gAq@",
+    "durationS": 3181,
+    "score": 20.466299286020476,
+    "mode": "street",
+    "reasons": [
+     "no community data yet; new to you",
+     "no community data yet; new to you",
+     "no community data yet; new to you",
+     "no community data yet; new to you",
+     "no community data yet; new to you",
+     "no community data yet; new to you"
+    ]
+   },
+   {
+    "picks": [
+     "node/2724279401",
+     "node/4012724144",
+     "way/266933299",
+     "way/266932812",
+     "way/959001284",
+     "way/388310491"
+    ],
+    "legsM": [
+     1371,
+     656,
+     250,
+     563,
+     798,
+     1002,
+     386
+    ],
+    "totalM": 5026,
+    "stopPointIndex": [
+     21,
+     28,
+     31,
+     35,
+     43,
+     67
+    ],
+    "pointCount": 79,
+    "polyline": "cl|wFvjmbMfAp@z@oAlA]F}@Vm@ZiCf@y@[mAY}BTgECgAU}@a@o@qMwIZuArBwGqCkBPk@{ByAjBeG}B{AnCuI|BzAPi@TNpBoGnJhGJ[KZfCbBcCxHoBdGdFfDa@nAlKbHkBbGrCjBQj@zFzDqBrGhCfBIn@pFpDkH{Ec@~@aAn@m@hA}@t@i@v@WN}@DeBbCg@bAwAv@Hz@Cx@[nAeAfAFx@Cz@_@jBWW_ACw@R_ACOl@?t@?u@Nm@g@gBw@uAeBiASm@TiDJa@?_BP}@gAq@",
+    "durationS": 3751,
+    "score": 20.407993943470803,
+    "mode": "street",
+    "reasons": [
+     "no community data yet; new to you",
+     "no community data yet; new to you",
+     "no community data yet; new to you",
+     "no community data yet; new to you",
+     "no community data yet; new to you",
+     "no community data yet; new to you"
+    ]
+   },
+   {
+    "picks": [
+     "way/388310491",
+     "node/13767747443",
+     "node/7641177124",
+     "node/5964504985",
+     "way/269307361",
+     "way/270730782"
+    ],
+    "legsM": [
+     386,
+     329,
+     498,
+     915,
+     495,
+     565,
+     576
+    ],
+    "totalM": 3764,
+    "stopPointIndex": [
+     11,
+     22,
+     40,
+     56,
+     60,
+     63
+    ],
+    "pointCount": 81,
+    "polyline": "cl|wFvjmbMfAp@Q|@?~AK`@UhDRl@dBhAv@tAf@fBOl@?t@?u@Nm@~@Bv@S~@Bz@`A`Af@XEh@Nr@qAPFQGs@pAb@n@A~@I^WFa@~A[h@h@fAaA~AAfAi@Pq@I[LGPn@`@UnAQMw@g@@YgDyB[r@EJLXe@|B?|Bg@`B@NNt@`@\\R@TZJz@cK|[eFmD`CyHIGdDgKt@}BqJkGhFqPBE_C}ATs@UQZcAz@wANuBzAoBTK~AKr@{@N_ABiAJa@?_BP}@gAq@",
+    "durationS": 2809,
+    "score": 21.748560139334188,
+    "mode": "street",
+    "reasons": [
+     "no community data yet; new to you",
+     "no community data yet; new to you",
+     "no community data yet; new to you",
+     "no community data yet; new to you",
+     "no community data yet; new to you",
+     "no community data yet; new to you"
+    ]
+   }
+  ],
+  "75/1": [
+   {
+    "picks": [
+     "way/959001284",
+     "way/266928800",
+     "way/266932812",
+     "node/2724279401",
+     "node/13087382861",
+     "way/313994014"
+    ],
+    "legsM": [
+     895,
+     419,
+     380,
+     812,
+     505,
+     1771,
+     1211
+    ],
+    "totalM": 5993,
+    "stopPointIndex": [
+     22,
+     26,
+     29,
+     30,
+     36,
+     75
+    ],
+    "pointCount": 101,
+    "polyline": "cl|wFvjmbMfAp@b@w@h@a@d@QdA@`B\\|Az@n@g@`@Bb@Pr@t@jAPJHvAsB|@EVOh@w@|@u@l@iA`Ao@b@_AjHzEqFqDHo@iCgBdCcIuCkBjBaG{FyD}f@e\\eBiAmBbGSOSh@_KuGa@lAuAfEIGSf@[U]bA_@f@SrAg@nA}@xDd@FNNCrAXdB?b@G\\gAtAOj@?f@@fAr@`CHbAb@tB\\~DBt@a@pCEjBt@Zr@|@xA~Fb@bA|@rACr@Tx@OhAHFgIlWd@RHNKLJMIOe@SlJaZ`@BvAv@vA`@jEZl@Ef@Ud@i@Pe@XO@OhA`@~BlBh@e@~AKr@{@N_ABiAJa@?_BP}@gAq@",
+    "durationS": 4472,
+    "score": 24.281301587209594,
+    "mode": "street",
+    "reasons": [
+     "no community data yet; new to you",
+     "no community data yet; new to you",
+     "no community data yet; new to you",
+     "no community data yet; new to you",
+     "no community data yet; new to you",
+     "no community data yet; new to you"
+    ]
+   },
+   {
+    "picks": [
+     "way/388310491",
+     "way/959001284",
+     "node/5356834803",
+     "way/266928800",
+     "way/266932812",
+     "node/4012724144"
+    ],
+    "legsM": [
+     386,
+     1002,
+     347,
+     400,
+     380,
+     813,
+     1417
+    ],
+    "totalM": 4745,
+    "stopPointIndex": [
+     11,
+     35,
+     38,
+     43,
+     46,
+     56
+    ],
+    "pointCount": 74,
+    "polyline": "cl|wFvjmbMfAp@Q|@?~AK`@UhDRl@dBhAv@tAf@fBOl@?t@?u@Nm@~@Bv@S~@BVV^kBB{@Gy@dAgAZoABy@I{@vAw@f@cAdBcC|@EVOh@w@|@u@l@iA`Ao@b@_AjHzEIGLm@tGuSeBmA_@nAaC{AkB~FqCgBuCkBjBaG{FyDgBkA`@oAuCmBnBgGiBmANe@kGeErBoGgCcBJ[KZHFsK`]dBhAeC|HhJjG_AvCYtDZzB\\jAs@bA[hCWl@G|@mA\\{@nAgAq@",
+    "durationS": 3541,
+    "score": 20.778137808836963,
+    "mode": "street",
+    "reasons": [
+     "no community data yet; new to you",
+     "no community data yet; new to you",
+     "no community data yet; new to you",
+     "no community data yet; new to you",
+     "no community data yet; new to you",
+     "no community data yet; new to you"
+    ]
+   },
+   {
+    "picks": [
+     "way/388310491",
+     "node/7641177124",
+     "way/270730782",
+     "way/270860860",
+     "way/313994014",
+     "node/7108033374"
+    ],
+    "legsM": [
+     386,
+     482,
+     413,
+     662,
+     199,
+     922,
+     1254
+    ],
+    "totalM": 4318,
+    "stopPointIndex": [
+     11,
+     21,
+     25,
+     27,
+     32,
+     42
+    ],
+    "pointCount": 67,
+    "polyline": "cl|wFvjmbMfAp@Q|@?~AK`@UhDRl@dBhAv@tAf@fBOl@?t@FjAVt@j@d@|@Jq@dAuB`Ao@fCpEzCAXv@f@w@g@@YyP_LCDuE~NkS}MUOuB|Ge@u@GCKLJMIOe@SxAuEUMRu@aFeDtEeOsNmJL_A?FpVfPT]`@BvAv@vA`@~DXn@?p@Yd@i@Pe@XO@OhA`@~BlBh@e@~AKr@{@N_ABiAJa@?_BP}@gAq@",
+    "durationS": 3222,
+    "score": 20.495948039532628,
+    "mode": "street",
+    "reasons": [
+     "no community data yet; new to you",
+     "no community data yet; new to you",
+     "no community data yet; new to you",
+     "no community data yet; new to you",
+     "no community data yet; new to you",
+     "no community data yet; new to you"
+    ]
+   }
+  ],
+  "75/2": [
+   {
+    "picks": [
+     "way/959001284",
+     "node/13767747443",
+     "way/270730782",
+     "way/202503285",
+     "node/13176273641",
+     "node/7108033374"
+    ],
+    "legsM": [
+     895,
+     748,
+     703,
+     535,
+     1474,
+     32,
+     1254
+    ],
+    "totalM": 5641,
+    "stopPointIndex": [
+     22,
+     42,
+     58,
+     60,
+     64,
+     65
+    ],
+    "pointCount": 90,
+    "polyline": "cl|wFvjmbMfAp@b@w@h@a@d@QdA@`B\\|Az@n@g@`@Bb@Pr@t@jAPJHvAsB|@EVOh@w@|@u@l@iA`Ao@b@_AjHzEmFmDO`A_AvA[x@?zAI`@{@l@}@fCq@?e@\\kArEMjAk@dCLh@CXc@UGPECENAEQGs@pAi@O]B}@e@c@i@_@zE_@h@UDq@dAuB`A]rA{ByAUp@gFgDCDeMv`@WOcf@u[tEaOwF{DjFoPPeA?FpVfPT]`@BvAv@vA`@~DXn@?p@Yd@i@Pe@XO@OhA`@~BlBh@e@~AKr@{@N_ABiAJa@?_BP}@gAq@",
+    "durationS": 4210,
+    "score": 25.591684269936454,
+    "mode": "street",
+    "reasons": [
+     "no community data yet; new to you",
+     "no community data yet; new to you",
+     "no community data yet; new to you",
+     "no community data yet; new to you",
+     "no community data yet; new to you",
+     "no community data yet; new to you"
+    ]
+   },
+   {
+    "picks": [
+     "way/202503285",
+     "way/270730782",
+     "node/13767747443",
+     "way/959001284",
+     "node/5356834803",
+     "way/266932812"
+    ],
+    "legsM": [
+     1080,
+     535,
+     703,
+     748,
+     347,
+     533,
+     836
+    ],
+    "totalM": 4782,
+    "stopPointIndex": [
+     17,
+     19,
+     35,
+     55,
+     58,
+     61
+    ],
+    "pointCount": 79,
+    "polyline": "cl|wFvjmbMfAp@Q|@?~AK`@ChAO~@s@z@_BJUJ{AnBOtB{@vA[bATPAF{Mhb@dBlAVNdMw`@BEfFfDTq@zBxA\\sAtBaAp@eATE^i@^{Eb@h@|@d@\\Ch@Nr@qAPF@DDODBFQb@TBYMi@j@eCLkAjAsEd@]p@?|@gCz@m@Ha@?{AZy@~@wANaAlFlDIGLm@tGuSkKaHa@lA}JuGuFdQeBiASj@GEMJgBpBYfBI`Ba@dA]Lg@x@[hCWl@G|@mA\\{@nAgAq@",
+    "durationS": 3569,
+    "score": 24.358178615945512,
+    "mode": "street",
+    "reasons": [
+     "no community data yet; new to you",
+     "no community data yet; new to you",
+     "no community data yet; new to you",
+     "no community data yet; new to you",
+     "no community data yet; new to you",
+     "no community data yet; new to you"
+    ]
+   },
+   {
+    "picks": [
+     "way/270730782",
+     "way/202503285",
+     "node/5964504985",
+     "way/269307361",
+     "node/7106318826",
+     "node/13767747443"
+    ],
+    "legsM": [
+     576,
+     535,
+     552,
+     495,
+     680,
+     515,
+     616
+    ],
+    "totalM": 3969,
+    "stopPointIndex": [
+     17,
+     19,
+     22,
+     26,
+     33,
+     53
+    ],
+    "pointCount": 71,
+    "polyline": "cl|wFvjmbMfAp@Q|@?~AK`@ChAO~@s@z@_BJUJ{AnBOtB{@vA[bATPUr@~B|ACDeMv`@WOVN_CrH~QfMeFmD`CyHIGdDgKt@}BJF`@i@~E{NrMrI\\k@VNKGFOz@{@^u@GOk@Km@q@a@kBWg@]WOy@g@y@Zi@`@_BVGH_@@_Ac@o@r@qAPFQGs@pAi@OYDsAw@s@kA_E_CiA}@K^}AcAS}@PoABiAJa@?_BP}@gAq@",
+    "durationS": 2962,
+    "score": 24.01612184231315,
+    "mode": "street",
+    "reasons": [
+     "no community data yet; new to you",
+     "no community data yet; new to you",
+     "no community data yet; new to you",
+     "no community data yet; new to you",
+     "no community data yet; new to you",
+     "no community data yet; new to you"
+    ]
+   }
+  ]
+ },
+ "realRouteJson": [
+  "{\"v\":1,\"mode\":\"street\",\"polyline\":\"cl|wFvjmbMfAp@Q|@?~AK`@UhDRl@dBhAv@tAf@fBOl@?t@?u@Nm@~@Bv@S~@Bz@`A`Af@XEh@Nr@qAPFQGs@pAb@n@A~@I^WFa@~A[h@h@fAaA~AAfAi@Pq@I[LGPn@`@UnAQMw@g@@YyP_LCDBE_C}ATs@UQZcAz@wANuBzAoBTK~AKr@{@N_ABiAJa@?_BP}@gAq@\",\"legs_m\":[386,329,498,413,576],\"total_m\":2202,\"duration_s\":1643,\"stop_point_index\":[11,22,40,44],\"request\":{\"minutes\":30,\"distance_m\":null,\"loop\":true}}",
+  "{\"v\":1,\"mode\":\"street\",\"polyline\":\"cl|wFvjmbMfAp@Q|@?~AK`@ChAO~@s@z@_BJUJ{AnBOtB{@vA[bATPUr@~B|ACDBExP~KAXv@f@t@f@NQnD`C\\\\k@VNKGFOz@{@Zk@@Sq@Qm@q@g@yBi@i@UaAyAaCs@o@}BBq@Wi@}@K{A?u@Nm@g@gBw@uAeBiASm@TiDJa@?_BP}@gAq@\",\"legs_m\":[576,413,200,555,386],\"total_m\":2130,\"duration_s\":1590,\"stop_point_index\":[17,21,26,42],\"request\":{\"minutes\":30,\"distance_m\":null,\"loop\":true}}",
+  "{\"v\":1,\"mode\":\"street\",\"polyline\":\"cl|wFvjmbMfAp@Q|@?~AK`@ChAO~@s@z@_BJUJ{AnBOtB{@vA[bATPUr@~B|ACDiFpPpJjGu@|Bt@}BJF`@i@j@KZRd@Ej@HQYIu@f@aB@oCb@kBMY`@_Ai@a@n@gCtBaAp@eA}@Kk@e@Wu@GkA?u@Nm@g@gBw@uAeBiASm@TiDJa@?_BP}@gAq@\",\"legs_m\":[576,565,185,570,386],\"total_m\":2282,\"duration_s\":1703,\"stop_point_index\":[17,20,27,42],\"request\":{\"minutes\":30,\"distance_m\":null,\"loop\":true}}"
+ ]
+}
