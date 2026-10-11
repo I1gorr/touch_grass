@@ -1,7 +1,7 @@
 import type { Walk } from '../models/types';
 import { go } from '../router';
 import { currentLocation, formatCoords, LocationError } from '../services/location';
-import { appBar, button, card, chip, dialog, iconButton, loading, toast } from '../ui/components';
+import { appBar, button, card, chip, dialog, loading, toast } from '../ui/components';
 import { formatDate, plural, walkConditions, walkStatusLabel } from '../ui/copy';
 import { h, reactive, type Screen } from '../ui/dom';
 import { icon, type IconName } from '../ui/icons';
@@ -103,7 +103,7 @@ export function homeScreen(): Screen {
         : sync.pending > 0
           ? (['cloud_upload', `${plural(sync.pending, 'change')} waiting`] as const)
           : (['cloud_done', 'Backed up'] as const);
-    return iconButton({ icon: name, label: tip, onclick: () => void sync.syncNow() });
+    return h('span', { class: 'icon-btn', role: 'status', 'aria-label': tip, title: tip }, icon(name));
   };
 
   const speechBanner = () => (needsSpeechModel() ? speechModelCard(s.pipeline.waitingCount) : null);

@@ -146,11 +146,10 @@ export function settingsScreen(): Screen {
       `${plural(sync.pending, 'change')} waiting to upload`,
       last === null ? 'Not backed up yet' : `Last backed up at ${formatTime(last.getTime())}`,
       sync.waitingForWalk && 'Backup waits until your walk is finished.',
-      sync.lastError && 'The last attempt didn’t reach the server.',
-      sync.paused && 'Automatic backup is paused. Tap “Sync now” to try again.',
+      sync.lastError && `Last backup problem: ${sync.lastError instanceof Error ? sync.lastError.message : String(sync.lastError)}`,
       sync.refused > 0 && `${plural(sync.refused, 'change was', 'changes were')} refused because they belong to another install.`,
     ].filter(Boolean);
-    return h('div', { class: 'row' }, h('p', { class: 'grow label', style: 'white-space:pre-line' }, lines.join('\n')), sync.running ? h('span', { class: 'spinner' }) : button({ label: 'Sync now', variant: 'outlined', small: true, onclick: () => void sync.syncNow() }));
+    return h('div', { class: 'row' }, h('p', { class: 'grow label', style: 'white-space:pre-line' }, lines.join('\n')), sync.running && h('span', { class: 'spinner', role: 'status', 'aria-label': 'Backing up' }));
   };
 
   const body = h('div', { class: 'content' });

@@ -118,17 +118,19 @@ describe('failure handling', () => {
     expect(s.pending).toBe(0);
   });
 
-  it('a wrong API key (401) pauses auto-sync until a manual retry', async () => {
+  it('a wrong API key (401) keeps retrying automatically', async () => {
     await seed();
     const s = service();
     transport.failWith = new SyncException('invalid api key', 401);
-    await s.syncNow(false);
-    expect(s.paused).toBe(true);
+    s.start();
+    await vi.waitFor(() => expect(s.lastError).toBeInstanceOf(SyncException));
+    expect(s.paused).toBe(false);
 
     transport.failWith = null;
     await s.syncNow();
     expect(s.paused).toBe(false);
     expect(s.pending).toBe(0);
+    await s.close();
   });
 
   it('server errors (5xx, 408, 429) are retryable, not permanent', () => {
@@ -282,17 +284,17 @@ describe('scheduling', () => {
     await s.close();
   });
 
-  it('a permanent failure stops automatic retries', async () => {
+  it('a permanent failure is retried automatically', async () => {
     await repo.insertWalk(walk('w1'), []);
     transport.failWith = new SyncException('bad key', 403);
     const s = new SyncService({ store: repo, transport, deviceId: DEVICE, intervalMs: 1000 });
     s.start();
     await vi.advanceTimersByTimeAsync(0);
-    await vi.waitFor(() => expect(s.paused).toBe(true));
+    await vi.waitFor(() => expect(s.lastError).toBeInstanceOf(SyncException));
+    expect(s.paused).toBe(false);
     transport.failWith = null;
     await vi.advanceTimersByTimeAsync(5000);
-    expect(transport.pushes).toHaveLength(0); // no automatic retry while paused
-    expect((await s.syncNow()).uploaded).toBe(1); // a manual sync resumes
+    expect(transport.pushes).toHaveLength(1); // periodic automatic retry
     await s.close();
   });
 

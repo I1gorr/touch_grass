@@ -1,6 +1,6 @@
 import { batchCount, type SyncBatch } from '../db/walkRepo';
 import { Emitter } from '../util/emitter';
-import { SyncException, type SyncTransport } from './transport';
+import type { SyncTransport } from './transport';
 
 /** Local store that tracks which rows changed since the last upload. Implemented by WalkRepo. */
 export interface SyncableStore {
@@ -45,7 +45,7 @@ export interface SyncServiceOptions {
  * The local database stays the source of truth: a failed sync never blocks or loses anything; rows just stay
  * pending until the next attempt.
  *
- * Attempts happen: `debounceMs` after local changes, every `intervalMs`, and on `syncNow` (Settings button, walk finished).
+ * Attempts happen: `debounceMs` after local changes, every `intervalMs`, and when the browser comes online.
  */
 export class SyncService {
   lastSuccess: Date | null = null;
@@ -56,7 +56,7 @@ export class SyncService {
   waitingForWalk = false;
   /** Rows the server refused because a different install owns them. Should stay 0. */
   refused = 0;
-  /** A permanent failure (e.g. wrong API key) stops automatic retries until `syncNow` is called explicitly. */
+  /** Kept for status compatibility; automatic sync never pauses permanently. */
   paused = false;
 
   private readonly emitter = new Emitter();
@@ -73,7 +73,7 @@ export class SyncService {
 
   constructor(o: SyncServiceOptions) {
     this.o = {
-      intervalMs: 5 * 60_000,
+      intervalMs: 60_000,
       debounceMs: 5000,
       batchSize: 200,
       maxBatchesPerRun: 50,
@@ -98,7 +98,7 @@ export class SyncService {
   }
 
   private auto(): void {
-    if (!this.paused && !this.disposed) void this.syncNow(false);
+    if (!this.disposed) void this.syncNow(false);
   }
 
   /**
@@ -107,7 +107,7 @@ export class SyncService {
    * next timer.
    */
   syncNow(manual = true): Promise<SyncResult> {
-    if (manual) this.paused = false;
+    void manual; // Kept for callers that still pass the old argument; sync is always automatic now.
     if (this.inFlight) {
       this.again = true;
       return this.inFlight;
@@ -179,7 +179,6 @@ export class SyncService {
       return { uploaded };
     } catch (e) {
       this.lastError = e;
-      if (e instanceof SyncException && e.isPermanent) this.paused = true;
       return { uploaded, error: e };
     } finally {
       try {
