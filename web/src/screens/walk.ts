@@ -86,7 +86,7 @@ export function walkScreen(walkId: string): Screen {
       appBar({
         title,
         back: true,
-        actions: [{ icon: c.showCleaned ? 'auto_fix_high' : 'notes', label: c.showCleaned ? 'Show raw text' : 'Show cleaned text', onclick: () => c.toggleView() }],
+        actions: [{ icon: c.showCleaned ? 'menu_book' : 'mic', label: c.showCleaned ? 'Show raw transcription' : 'Show formatted entry', onclick: () => c.toggleView() }],
       }),
     ];
     if (!c.loading) {
@@ -143,4 +143,3 @@ export function walkScreen(walkId: string): Screen {
     },
   };
 }
-

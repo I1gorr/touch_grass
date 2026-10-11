@@ -43,7 +43,7 @@ export function journalScreen(walkId: string): Screen {
       appBar({
         title: 'Walk journal',
         back: true,
-        actions: [{ icon: cleaned ? 'auto_fix_high' : 'notes', label: cleaned ? 'Show raw text' : 'Show cleaned text', onclick: () => ((cleaned = !cleaned), view.update()) }],
+        actions: [{ icon: cleaned ? 'menu_book' : 'mic', label: cleaned ? 'Show raw transcription' : 'Show formatted entry', onclick: () => ((cleaned = !cleaned), view.update()) }],
       }),
     );
     if (!data) return loading();
