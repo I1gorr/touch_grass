@@ -1,24 +1,36 @@
-<<<<<<< HEAD
 # Dependencies
 node_modules/
 
-# Build output
-dist/
+# Dart / Flutter build output
+.dart_tool/
 build/
+.flutter-plugins
+.flutter-plugins-dependencies
+.packages
+.pub-cache/
+.pub/
+dist/
 .vite/
 *.tsbuildinfo
 
-# Environment / secrets (keep the .env.example templates)
+# Environment / secrets; keep .env.example templates
 .env
 .env.*
 !.env.example
 
-# Logs
+# Local databases written by tests or scripts
+*.db
+*.sqlite
+*.sqlite-journal
+
+# Logs and archives
 *.log
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 pnpm-debug.log*
+*.tar.gz
+*.zip
 
 # Test output
 coverage/
@@ -27,57 +39,21 @@ playwright-report/
 test-results/
 web/shots/
 
-# Editors / IDEs
+# Editors and OS
 .vscode/
 .idea/
+*.iml
 *.swp
 *.swo
 *~
-
-# OS files
 .DS_Store
 Thumbs.db
-
-# Misc
-*.local
-.cache/
-tmp/
-=======
-# Flutter / Dart build output
-.dart_tool/
-build/
-.flutter-plugins
-.flutter-plugins-dependencies
-.packages
-.pub-cache/
-.pub/
-coverage/
-
-# Server (also in server/.gitignore)
-node_modules/
-.env
-.env.*
-!.env.example
-npm-debug.log*
-
-# Local databases written by tests or scripts
-*.db
-*.sqlite
-*.sqlite-journal
-
-# Editors and OS
-*.iml
-.idea/
-.vscode/
-*.swp
-.DS_Store
 
 # Android local build files
 android/.gradle/
 android/local.properties
 
-# Logs and archives
-*.log
-*.tar.gz
-*.zip
->>>>>>> 63bdaa2 (p1p2 with data layer)
+# Miscellaneous local files
+*.local
+.cache/
+tmp/

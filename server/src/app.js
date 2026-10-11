@@ -2,15 +2,10 @@ import { createHash, timingSafeEqual } from 'node:crypto';
 
 import express from 'express';
 
-<<<<<<< HEAD
 import { cors } from './cors.js';
 import { parsePlacesQuery, placeStats } from './places.js';
 import { HIDE_AFTER_DEFAULT, saveReport, validateReport } from './reports.js';
 import { serveWebApp } from './static.js';
-=======
-import { parsePlacesQuery, placeStats } from './places.js';
-import { HIDE_AFTER_DEFAULT, saveReport, validateReport } from './reports.js';
->>>>>>> 63bdaa2 (p1p2 with data layer)
 import { applySync, totals } from './store.js';
 import { ValidationError, validatePayload } from './validate.js';
 
@@ -25,7 +20,6 @@ function sameSecret(a, b) {
  * Builds the HTTP app. `db` is a connected mongodb Db; `apply` is injectable
  * so routes can be tested without Atlas. `minDevices` / `hideAfter` tune the
  * community rules (privacy floor, reports needed to hide a note).
-<<<<<<< HEAD
  * `allowedOrigins` lists the web-app origins that may call the API from a browser (see cors.js).
  * `staticDir` (optional) is the built web app to serve from this same server (see static.js).
  */
@@ -43,13 +37,6 @@ export function createApp({
   const app = express();
   app.disable('x-powered-by');
   app.use(cors(allowedOrigins));
-=======
- */
-export function createApp({ db, apiKey, apply = applySync, log = console, minDevices = 2, hideAfter = HIDE_AFTER_DEFAULT }) {
-  if (!apiKey) throw new Error('API_KEY must be set');
-  const app = express();
-  app.disable('x-powered-by');
->>>>>>> 63bdaa2 (p1p2 with data layer)
   app.use(express.json({ limit: '2mb' }));
 
   app.get('/healthz', async (_req, res) => {
@@ -98,11 +85,7 @@ export function createApp({ db, apiKey, apply = applySync, log = console, minDev
     }
   });
 
-<<<<<<< HEAD
   if (staticDir) app.use(serveWebApp(staticDir));
-
-=======
->>>>>>> 63bdaa2 (p1p2 with data layer)
   // Rows and community data only. Images never reach this server or Atlas:
   // photos stay in the phone's SQLite database, so there is no upload route.
 

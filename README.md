@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 # Touch Grass
 
 Offline walk-quest app: an installable PWA for Android (Chrome → "Add to Home screen") that plans street-routed walk
@@ -12,7 +11,7 @@ loops, records voice notes, and transcribes them on the phone.
 Quick start: `cd web && npm install && npm run dev`.
 
 Tests: `cd web && npm test` (web app), `cd server && npm test` (sync API).
-=======
+
 # Touch Grass: data layer
 
 The database, cloud backup and routing code of the Touch Grass walk-quest app (Flutter). The screens, recording
@@ -55,4 +54,3 @@ flutter test                 # SQLite, sync, routing, map packs
 cd server && npm test        # sync API (no Atlas needed)
 ```
 Map scripts: `dart run scripts/datatrack/smoke_route.dart`, `dart run scripts/datatrack/record_pack.dart`.
->>>>>>> 63bdaa2 (p1p2 with data layer)

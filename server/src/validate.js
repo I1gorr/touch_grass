@@ -12,11 +12,7 @@ export const ID = /^[A-Za-z0-9_-]{1,100}$/;
 export const DEVICE_ID = /^[0-9a-f]{32}$/;
 const WALK_STATUS = new Set(['preparing', 'ready', 'active', 'done']);
 
-<<<<<<< HEAD
-// Field allow-lists mirror the SQLite schema (docs/DATA_SCHEMA.md).
-=======
-// Field allow-lists mirror the SQLite schema (lib/db/schema.dart).
->>>>>>> 63bdaa2 (p1p2 with data layer)
+// Field allow-lists mirror the SQLite schema (docs/DATA_SCHEMA.md and lib/db/schema.dart).
 // Type tags: 'id' | 'str' | 'int' | 'num' | 'status' | 'flag' (0/1) | 'snippet'
 // (short public text); '?' suffix = nullable. Every new field is nullable so
 // older clients that don't send it keep working.
