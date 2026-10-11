@@ -4,7 +4,7 @@ import {
 import { hasWebGpu } from '../ml/capabilities';
 import { LLM_MODELS, type ModelOption, STT_MODELS } from '../ml/models';
 import { appBar, button, card, progressBar, selectRow, switchRow, toast } from '../ui/components';
-import { distanceLabel, engineLabel, formatBytes, formatTime, plural } from '../ui/copy';
+import { distanceLabel, engineLabel, formatBytes } from '../ui/copy';
 import { h, reactive, type Screen } from '../ui/dom';
 import { currentLocation, formatCoords, LocationError } from '../services/location';
 import { ctx } from './context';
@@ -138,20 +138,6 @@ export function settingsScreen(): Screen {
     );
   };
 
-  const syncStatus = () => {
-    const sync = s.sync;
-    if (!sync) return null;
-    const last = sync.lastSuccess;
-    const lines = [
-      `${plural(sync.pending, 'change')} waiting to upload`,
-      last === null ? 'Not backed up yet' : `Last backed up at ${formatTime(last.getTime())}`,
-      sync.waitingForWalk && 'Backup waits until your walk is finished.',
-      sync.lastError && `Last backup problem: ${sync.lastError instanceof Error ? sync.lastError.message : String(sync.lastError)}`,
-      sync.refused > 0 && `${plural(sync.refused, 'change was', 'changes were')} refused because they belong to another install.`,
-    ].filter(Boolean);
-    return h('div', { class: 'row' }, h('p', { class: 'grow label', style: 'white-space:pre-line' }, lines.join('\n')), sync.running && h('span', { class: 'spinner', role: 'status', 'aria-label': 'Backing up' }));
-  };
-
   const body = h('div', { class: 'content' });
   // The models section updates on its own while a download runs, so progress ticks never re-render (and un-focus) the text fields.
   const modelsHost = h('div');
@@ -165,17 +151,13 @@ export function settingsScreen(): Screen {
     selectRow({ title: 'Walk length', subtitle: 'Routes follow real streets and loop back to the start', value: draft.walkMinutes, options: WALK_MINUTE_CHOICES.map((m) => ({ value: m, label: `${m} min` })), onchange: (v) => set({ walkMinutes: v }) }),
     selectRow({ title: 'Community notes from', subtitle: 'What other walkers shared about places near you', value: draft.communityRadiusM, options: COMMUNITY_RADIUS_CHOICES.map((r) => ({ value: r, label: r === 0 ? 'Off' : `Within ${distanceLabel(r)}` })), onchange: (v) => set({ communityRadiusM: v }) }),
     switchRow({ title: 'Vary routes', subtitle: 'Rotate through different places each day. Off keeps the same places.', checked: draft.routeVariety, onchange: (v) => set({ routeVariety: v }) }),
-    h('div', { class: 'divider' }),
-    h('h2', { class: 'title-md' }, 'Cloud backup'),
-    h('p', { class: 'label' }, 'Everything is saved on this phone first. With a sync server set, your walks and notes are also backed up whenever you’re online. Photos never leave the phone.'),
-    syncStatus(),
     h('div', { class: 'stack', style: 'margin-top:16px;display:flex;flex-direction:column;align-items:stretch' },
       button({ label: applying ? 'Applying…' : 'Apply changes', busy: applying, disabled: applying, onclick: () => void apply() }),
       button({ label: 'Reset to defaults', variant: 'text', disabled: applying, onclick: () => ((draft = c.defaults), (coords = `${draft.demoCoords.lat}, ${draft.demoCoords.lng}`), (syncUrl = draft.syncUrl), view.update()) })),
   ]);
 
   void hasWebGpu().then((v) => ((gpu = v), modelsView.update()));
-  const offs = [s.models.subscribe(() => modelsView.update()), s.sync?.subscribe(() => view.update())];
+  const offs = [s.models.subscribe(() => modelsView.update())];
   return {
     el: h('div', { class: 'screen' }, appBar({ title: 'Settings', back: true }), body),
     dispose() {
