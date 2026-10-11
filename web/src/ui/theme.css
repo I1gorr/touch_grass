@@ -137,6 +137,23 @@ input[type='text'], input[type='url'] { width: 100%; }
 /* Quote notes from the community */
 .quote { display: flex; align-items: flex-start; gap: 4px; margin-top: 8px; padding: 8px 4px 8px 12px; background: var(--tint); border-radius: 10px; font-style: italic; }
 
+/* The route itself is stored in the quest, so this mini-map needs no tile provider or network after planning. */
+.mini-map { margin: 12px 0 8px; border: 1px solid var(--line); border-radius: var(--radius); background: var(--tint); overflow: hidden; }
+.mini-map-floating { position: fixed; right: 12px; bottom: calc(var(--bar-h) + 12px + env(safe-area-inset-bottom)); z-index: 4; width: min(42vw, 220px); min-width: 176px; box-shadow: 0 8px 24px rgba(31, 42, 34, 0.16); }
+.mini-map-header { display: flex; align-items: center; justify-content: space-between; gap: 8px; padding: 8px 10px 4px; }
+.mini-map-title { color: var(--green-dark); font-size: 0.8rem; font-weight: 700; }
+.mini-map-badge { color: var(--muted); font-size: 0.7rem; }
+.mini-map svg { display: block; width: 100%; height: auto; padding: 0 6px 6px; }
+.mini-map-surface { fill: var(--white); }
+.mini-map-route { fill: none; stroke: var(--green); stroke-width: 5; stroke-linecap: round; stroke-linejoin: round; }
+.mini-map-start { fill: var(--white); stroke: var(--green-dark); stroke-width: 3; }
+.mini-map-finish { fill: var(--green-dark); stroke: var(--white); stroke-width: 2; }
+.mini-map-stop { fill: var(--tint-strong); stroke: var(--green-dark); stroke-width: 2; }
+.mini-map-stop-label { fill: var(--green-dark); font-size: 10px; font-weight: 700; font-family: var(--font); pointer-events: none; }
+.mini-map-user-halo { fill: rgba(47, 107, 63, 0.2); stroke: none; }
+.mini-map-user { fill: var(--recording); stroke: var(--white); stroke-width: 2; }
+@media (max-width: 420px) { .mini-map-floating { right: 8px; width: 188px; min-width: 0; } }
+
 /* Dialog and toast */
 .scrim { position: fixed; inset: 0; z-index: 40; background: rgba(0, 0, 0, 0.4); display: flex; align-items: center; justify-content: center; padding: 24px; }
 .dialog { width: min(100%, 420px); max-height: 90dvh; overflow: auto; background: var(--white); border-radius: 20px; padding: 24px; }

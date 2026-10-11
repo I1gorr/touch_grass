@@ -4,6 +4,7 @@ import { WalkController } from '../services/walkController';
 import { appBar, button, card, dialog, entryCard, iconButton, loading, PhotoUrls, toast } from '../ui/components';
 import { h, reactive, type Screen } from '../ui/dom';
 import { icon } from '../ui/icons';
+import { miniMap } from '../ui/miniMap';
 import { ctx } from './context';
 import { needsSpeechModel, speechModelCard, typeNoteFor } from './speechSetup';
 
@@ -14,6 +15,8 @@ export function walkScreen(walkId: string): Screen {
   const wake = new WakeLockHolder();
   let photoSrc: string | null = null;
   let photoKey = '';
+  let currentLocation: { lat: number; lng: number } | null = null;
+  let locationWatch: number | null = null;
 
   const finish = async () => {
     if (!(await c.finish())) return;
@@ -62,6 +65,7 @@ export function walkScreen(walkId: string): Screen {
     }
     const waiting = s.pipeline.waitingCount;
     return [
+      c.walk && miniMap({ routeJson: c.walk.routeJson, stops: c.stops, start: { lat: c.walk.startLat, lng: c.walk.startLng }, current: currentLocation, floating: true }),
       stopHeader(stop.name, stop.blurb, stop.prompt),
       h('div', { class: 'row', style: 'margin-top:12px' }, h('span', { class: 'title-sm grow' }, 'Your notes'), h('span', { class: 'label' }, c.showCleaned ? 'Cleaned text' : 'Raw text')),
       c.entries.length === 0 && h('p', { class: 'pad-y center' }, 'Tap the mic and answer the prompt out loud.'),
@@ -129,6 +133,16 @@ export function walkScreen(walkId: string): Screen {
   document.addEventListener('visibilitychange', onVisible);
 
   const el = h('div', { class: 'screen has-bar' }, chrome, body);
+  if ('geolocation' in navigator) {
+    locationWatch = navigator.geolocation.watchPosition(
+      (position) => {
+        currentLocation = { lat: position.coords.latitude, lng: position.coords.longitude };
+        view.update();
+      },
+      () => undefined,
+      { enableHighAccuracy: false, maximumAge: 30_000, timeout: 10_000 },
+    );
+  }
   void c.load();
   return {
     el,
@@ -137,10 +151,10 @@ export function walkScreen(walkId: string): Screen {
       offModels();
       view.stop();
       document.removeEventListener('visibilitychange', onVisible);
+      if (locationWatch !== null) navigator.geolocation.clearWatch(locationWatch);
       void wake.set(false);
       c.dispose();
       urls.release();
     },
   };
 }
-
