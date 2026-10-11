@@ -1,5 +1,6 @@
 import type { Stop, Location } from '../models/types';
 import { decodePolyline } from '../routing/polyline';
+import type { WalkWay } from '../routing/walkWay';
 import { h } from './dom';
 
 const SVG_NS = 'http://www.w3.org/2000/svg';
@@ -42,24 +43,56 @@ function project(points: Location[], width: number, height: number, padding: num
   return (p) => [x0 + (p.lng - minLng) * scale, y0 + (maxLat - p.lat) * scale];
 }
 
+function wayPoints(way: WalkWay): Location[] {
+  const points: Location[] = [];
+  for (let i = 0; i + 1 < way.coords.length; i += 2) points.push({ lat: way.coords[i], lng: way.coords[i + 1] });
+  return points;
+}
+
+function visibleWays(ways: WalkWay[], route: Location[]): WalkWay[] {
+  if (ways.length === 0 || route.length === 0) return [];
+  const lats = route.map((p) => p.lat);
+  const lngs = route.map((p) => p.lng);
+  const latSpan = Math.max(Math.max(...lats) - Math.min(...lats), 0.001);
+  const lngSpan = Math.max(Math.max(...lngs) - Math.min(...lngs), 0.001);
+  const minLat = Math.min(...lats) - latSpan * 0.35;
+  const maxLat = Math.max(...lats) + latSpan * 0.35;
+  const minLng = Math.min(...lngs) - lngSpan * 0.35;
+  const maxLng = Math.max(...lngs) + lngSpan * 0.35;
+  return ways
+    .filter((way) => wayPoints(way).some((p) => p.lat >= minLat && p.lat <= maxLat && p.lng >= minLng && p.lng <= maxLng))
+    .slice(0, 350);
+}
+
+function wayClass(highway: string): string {
+  return /primary|secondary|tertiary|trunk/.test(highway) ? 'mini-map-street major' : 'mini-map-street';
+}
+
 /** Renders the saved route without network tiles, so it remains visible offline. */
 export function miniMap(options: {
   routeJson: string | null;
   stops: Stop[];
   start: Location;
+  ways?: WalkWay[];
   current?: Location | null;
   floating?: boolean;
 }): HTMLElement {
   const width = 320;
   const height = 188;
   const points = routePoints(options.routeJson, options.stops, options.start);
-  const toSvg = project(points, width, height, 22);
+  const streets = visibleWays(options.ways ?? [], points);
+  const mapPoints = [
+    ...points,
+    ...streets.flatMap(wayPoints),
+  ];
+  const toSvg = project(mapPoints, width, height, 22);
   const path = points.map(toSvg).map(([x, y], i) => `${i === 0 ? 'M' : 'L'} ${x.toFixed(1)} ${y.toFixed(1)}`).join(' ');
   const root = h('div', { class: `mini-map${options.floating ? ' mini-map-floating' : ''}`, role: 'img', 'aria-label': 'Offline route map' });
   const header = h('div', { class: 'mini-map-header' }, h('span', { class: 'mini-map-title' }, 'Your route'), h('span', { class: 'mini-map-badge' }, 'Offline'));
   const canvas = svg('svg', { viewBox: `0 0 ${width} ${height}`, preserveAspectRatio: 'xMidYMid meet', 'aria-hidden': 'true' });
   canvas.append(
     svg('rect', { x: '0', y: '0', width: `${width}`, height: `${height}`, rx: '16', class: 'mini-map-surface' }),
+    ...streets.map((way) => svg('path', { d: wayPoints(way).map(toSvg).map(([x, y], i) => `${i === 0 ? 'M' : 'L'} ${x.toFixed(1)} ${y.toFixed(1)}`).join(' '), class: wayClass(way.highway) })),
     svg('path', { d: path, class: 'mini-map-route' }),
   );
 

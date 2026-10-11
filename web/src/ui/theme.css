@@ -145,6 +145,8 @@ input[type='text'], input[type='url'] { width: 100%; }
 .mini-map-badge { color: var(--muted); font-size: 0.7rem; }
 .mini-map svg { display: block; width: 100%; height: auto; padding: 0 6px 6px; }
 .mini-map-surface { fill: var(--white); }
+.mini-map-street { fill: none; stroke: #c9dcc4; stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; }
+.mini-map-street.major { stroke: #9fbea0; stroke-width: 3; }
 .mini-map-route { fill: none; stroke: var(--green); stroke-width: 5; stroke-linecap: round; stroke-linejoin: round; }
 .mini-map-start { fill: var(--white); stroke: var(--green-dark); stroke-width: 3; }
 .mini-map-finish { fill: var(--green-dark); stroke: var(--white); stroke-width: 2; }

@@ -1,6 +1,7 @@
 import { type PlanJob, planRoutes, type RouteOption, type RouteRequest, budgetM, toRouteJson } from '../routing/recommender';
 import type { PlaceHistory } from '../routing/placeStats';
 import type { PreparedQuest, Stop } from '../models/types';
+import type { WalkWay } from '../routing/walkWay';
 import { newId, stopIdFor } from '../util/ids';
 import { timeOfDayFor } from '../util/stopFacts';
 import { type OfflinePack, packRadiusFor, reachFor, packCovers } from './offlinePack';
@@ -19,6 +20,8 @@ export class NoPackError extends Error {
 export interface RecommendedRoute {
   option: RouteOption;
   quest: PreparedQuest;
+  /** The downloaded local street network used to create this route. */
+  mapWays: WalkWay[];
 }
 
 export interface RouteServiceDeps {
@@ -134,6 +137,7 @@ export class RouteService {
       }));
       return {
         option: o,
+        mapWays: pack.ways,
         quest: {
           walk: {
             id: walkId,
