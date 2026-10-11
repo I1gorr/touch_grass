@@ -9,6 +9,10 @@ export interface SyncableStore {
   /** Marks exactly the uploaded versions as synced. Rows changed again after being read stay pending. */
   markSynced(batch: SyncBatch): Promise<void>;
   pendingCount(): Promise<number>;
+  /** Optional durable deletion queue, so local-first deletes still reach the cloud later. */
+  pendingWalkDeletes?: () => Promise<string[]>;
+  queueWalkDelete?: (walkId: string) => Promise<void>;
+  markWalkDeleteSent?: (walkId: string) => Promise<void>;
 }
 
 export interface SyncResult {
@@ -113,9 +117,12 @@ export class SyncService {
 
   /** Flushes pending rows, then asks the server to delete this walk before local deletion. */
   async deleteWalk(walkId: string): Promise<void> {
-    const result = await this.syncNow(true);
-    if (result.error) throw result.error;
-    if (result.skippedForWalk) throw new Error('A walk is currently in progress');
+    if (this.o.store.queueWalkDelete) {
+      await this.o.store.queueWalkDelete(walkId);
+      const result = await this.syncNow(true);
+      if (result.error) throw result.error;
+      return;
+    }
     await this.o.transport.deleteWalk(this.o.deviceId, walkId);
   }
 
@@ -149,6 +156,11 @@ export class SyncService {
     let uploaded = 0;
     let refusedRows = 0;
     try {
+      const pendingDeletes = (await this.o.store.pendingWalkDeletes?.()) ?? [];
+      for (const walkId of pendingDeletes) {
+        await this.o.transport.deleteWalk(this.o.deviceId, walkId);
+        await this.o.store.markWalkDeleteSent?.(walkId);
+      }
       for (let i = 0; i < this.o.maxBatchesPerRun; i++) {
         const batch = await this.o.store.pendingChanges(this.o.batchSize);
         if (batchCount(batch) === 0) break;

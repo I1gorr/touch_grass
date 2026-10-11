@@ -27,6 +27,7 @@ export const batchCount = (b: SyncBatch): number => b.walk.length + b.stop.lengt
 
 export const SYNCED_TABLES = ['walk', 'stop', 'entry'] as const;
 type SyncedTable = (typeof SYNCED_TABLES)[number];
+const PENDING_DELETES_KEY = 'pending_walk_deletes';
 
 /** A row needs uploading when `COALESCE(updated_at, 1) > COALESCE(synced_at, 0)`. */
 const isPending = (r: { updated_at: number | null; synced_at: number | null }) => (r.updated_at ?? 1) > (r.synced_at ?? 0);
@@ -201,6 +202,30 @@ export class WalkRepo {
     await tx.objectStore('walk').delete(walkId);
     await tx.done;
     this.emitter.emit();
+  }
+
+  /** Records a cloud deletion intent before local rows are removed. */
+  async queueWalkDelete(walkId: string): Promise<void> {
+    const tx = this.db.transaction('kv', 'readwrite');
+    const row = await tx.store.get(PENDING_DELETES_KEY);
+    const ids = Array.isArray(row?.value) ? row.value.filter((id): id is string => typeof id === 'string') : [];
+    if (!ids.includes(walkId)) ids.push(walkId);
+    await tx.store.put({ key: PENDING_DELETES_KEY, value: ids });
+    await tx.done;
+  }
+
+  async pendingWalkDeletes(): Promise<string[]> {
+    const row = await this.db.get('kv', PENDING_DELETES_KEY);
+    return Array.isArray(row?.value) ? row.value.filter((id): id is string => typeof id === 'string') : [];
+  }
+
+  async markWalkDeleteSent(walkId: string): Promise<void> {
+    const tx = this.db.transaction('kv', 'readwrite');
+    const row = await tx.store.get(PENDING_DELETES_KEY);
+    const ids = Array.isArray(row?.value) ? row.value.filter((id): id is string => typeof id === 'string' && id !== walkId) : [];
+    if (ids.length === 0) await tx.store.delete(PENDING_DELETES_KEY);
+    else await tx.store.put({ key: PENDING_DELETES_KEY, value: ids });
+    await tx.done;
   }
 
   async getWalk(walkId: string): Promise<Walk | null> {

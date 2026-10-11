@@ -288,7 +288,7 @@ describe('scheduling', () => {
     const s = new SyncService({ store: repo, transport, deviceId: DEVICE, intervalMs: 1000 });
     s.start();
     await vi.advanceTimersByTimeAsync(0);
-    expect(s.paused).toBe(true);
+    await vi.waitFor(() => expect(s.paused).toBe(true));
     transport.failWith = null;
     await vi.advanceTimersByTimeAsync(5000);
     expect(transport.pushes).toHaveLength(0); // no automatic retry while paused

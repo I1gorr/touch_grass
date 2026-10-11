@@ -1,5 +1,4 @@
 import { type AppConfig, ConfigStore, configFromEnv } from './config/config';
-import { dbViewerScreen } from './screens/dbViewer';
 import { ctx, setCtx } from './screens/context';
 import { homeScreen } from './screens/home';
 import { journalScreen } from './screens/journal';
@@ -17,7 +16,6 @@ export const ROUTES: Route[] = [
   { pattern: '/walk/:id', screen: (p) => walkScreen(p.id) },
   { pattern: '/journal/:id', screen: (p) => journalScreen(p.id) },
   { pattern: '/settings', screen: () => settingsScreen() },
-  { pattern: '/db', screen: () => dbViewerScreen() },
 ];
 
 const notFound = (): Screen => ({

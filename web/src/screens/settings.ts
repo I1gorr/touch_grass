@@ -3,10 +3,9 @@ import {
 } from '../config/config';
 import { hasWebGpu } from '../ml/capabilities';
 import { LLM_MODELS, type ModelOption, STT_MODELS } from '../ml/models';
-import { appBar, button, card, chip, progressBar, selectRow, switchRow, toast } from '../ui/components';
+import { appBar, button, card, progressBar, selectRow, switchRow, toast } from '../ui/components';
 import { distanceLabel, engineLabel, formatBytes, formatTime, plural } from '../ui/copy';
 import { h, reactive, type Screen } from '../ui/dom';
-import { go } from '../router';
 import { currentLocation, formatCoords, LocationError } from '../services/location';
 import { ctx } from './context';
 
@@ -159,30 +158,21 @@ export function settingsScreen(): Screen {
   const modelsHost = h('div');
   const modelsView = reactive(modelsHost, modelsCard);
   const view = reactive(body, () => [
-    h('h2', { class: 'title-md' }, 'In use now'),
-    h('div', { class: 'chips', style: 'margin-top:8px' }, ...Object.entries(s.kinds).map(([k, v]) => chip(`${k}: ${v}`))),
-    h('div', { class: 'divider' }),
     modelsHost,
     selectRow({ title: 'Language model use', subtitle: 'Writes stop text and tidies your notes', value: draft.llmMode, options: ML_MODES.map((m) => ({ value: m, label: engineLabel(m) })), onchange: (v) => set({ llmMode: v }) }),
     selectRow({ title: 'Speech-to-text use', subtitle: 'Turns your voice notes into text', value: draft.sttMode, options: STT_MODES.map((m) => ({ value: m, label: engineLabel(m) })), onchange: (v) => set({ sttMode: v }) }),
-    switchRow({ title: 'Sample places and weather', subtitle: 'Only the built-in Central Park map, nothing downloaded', checked: draft.fakeQuest, onchange: (v) => set({ fakeQuest: v }) }),
-    switchRow({ title: 'Simulated microphone and camera', subtitle: 'For desk testing', checked: draft.fakeDevices, onchange: (v) => set({ fakeDevices: v }) }),
     h('label', { class: 'field' }, h('span', null, 'Walking area (latitude, longitude)'), h('input', { id: 'coords', type: 'text', inputMode: 'decimal', value: coords, oninput: (e: Event) => (coords = (e.target as HTMLInputElement).value) })),
     button({ label: 'Use my current location', variant: 'outlined', small: true, onclick: () => void locate() }),
     selectRow({ title: 'Walk length', subtitle: 'Routes follow real streets and loop back to the start', value: draft.walkMinutes, options: WALK_MINUTE_CHOICES.map((m) => ({ value: m, label: `${m} min` })), onchange: (v) => set({ walkMinutes: v }) }),
     selectRow({ title: 'Community notes from', subtitle: 'What other walkers shared about places near you', value: draft.communityRadiusM, options: COMMUNITY_RADIUS_CHOICES.map((r) => ({ value: r, label: r === 0 ? 'Off' : `Within ${distanceLabel(r)}` })), onchange: (v) => set({ communityRadiusM: v }) }),
     switchRow({ title: 'Vary routes', subtitle: 'Rotate through different places each day. Off keeps the same places.', checked: draft.routeVariety, onchange: (v) => set({ routeVariety: v }) }),
-    selectRow({ title: 'Max stops per walk', value: draft.maxStops, options: [2, 3, 4, 5, 6, 8, 10].map((n) => ({ value: n, label: String(n) })), onchange: (v) => set({ maxStops: v }) }),
     h('div', { class: 'divider' }),
     h('h2', { class: 'title-md' }, 'Cloud backup'),
     h('p', { class: 'label' }, 'Everything is saved on this phone first. With a sync server set, your walks and notes are also backed up whenever you’re online. Photos never leave the phone.'),
-    h('label', { class: 'field' }, h('span', null, 'Sync server address'), h('input', { type: 'url', placeholder: 'https://… (leave empty to turn off)', autocomplete: 'off', autocapitalize: 'off', spellcheck: false, value: syncUrl, oninput: (e: Event) => (syncUrl = (e.target as HTMLInputElement).value) })),
     syncStatus(),
     h('div', { class: 'stack', style: 'margin-top:16px;display:flex;flex-direction:column;align-items:stretch' },
       button({ label: applying ? 'Applying…' : 'Apply changes', busy: applying, disabled: applying, onclick: () => void apply() }),
       button({ label: 'Reset to defaults', variant: 'text', disabled: applying, onclick: () => ((draft = c.defaults), (coords = `${draft.demoCoords.lat}, ${draft.demoCoords.lng}`), (syncUrl = draft.syncUrl), view.update()) })),
-    h('div', { class: 'divider' }),
-    h('button', { class: 'list-item', type: 'button', onclick: () => go('/db') }, h('span', { class: 'grow' }, 'Database')),
   ]);
 
   void hasWebGpu().then((v) => ((gpu = v), modelsView.update()));

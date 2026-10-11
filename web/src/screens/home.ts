@@ -27,10 +27,6 @@ export function homeScreen(): Screen {
   const open = (w: Walk, journal = false) => go(journal || w.status === 'done' ? `/journal/${w.id}` : `/walk/${w.id}`);
 
   const requestDelete = async (w: Walk) => {
-    if (w.status === 'active') {
-      toast('Finish this walk before deleting it.');
-      return;
-    }
     const confirmed = await dialog<boolean>({
       title: 'Delete this journey?',
       body: h('p', null, 'This permanently removes the quest, journal entries, and local photo. If cloud backup is enabled, its Atlas copy is removed too.'),
@@ -41,13 +37,14 @@ export function homeScreen(): Screen {
     });
     if (!confirmed) return;
     try {
-      if (s.sync) await s.sync.deleteWalk(w.id);
+      if (s.sync) await s.repo.queueWalkDelete(w.id);
       await s.repo.deleteWalk(w.id);
       await refresh();
       toast('Journey deleted.');
+      if (s.sync) void s.sync.deleteWalk(w.id).catch((e) => console.warn('[walk delete] cloud retry pending:', e));
     } catch (e) {
       console.warn('[walk delete] failed:', e);
-      toast('Couldn’t delete it from the cloud. Nothing was removed.');
+      toast('Couldn’t delete this journey.');
     }
   };
 
@@ -162,7 +159,6 @@ export function homeScreen(): Screen {
     const b = appBar({
       title: 'Touch Grass',
       actions: [
-        { icon: 'storage', label: 'Database', onclick: () => go('/db') },
         { icon: 'settings', label: 'Settings', onclick: () => go('/settings') },
       ],
     });
