@@ -111,6 +111,14 @@ export class SyncService {
     return (this.inFlight = this.runLoop().finally(() => (this.inFlight = null)));
   }
 
+  /** Flushes pending rows, then asks the server to delete this walk before local deletion. */
+  async deleteWalk(walkId: string): Promise<void> {
+    const result = await this.syncNow(true);
+    if (result.error) throw result.error;
+    if (result.skippedForWalk) throw new Error('A walk is currently in progress');
+    await this.o.transport.deleteWalk(this.o.deviceId, walkId);
+  }
+
   private async runLoop(): Promise<SyncResult> {
     let uploaded = 0;
     let last: SyncResult;

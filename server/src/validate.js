@@ -147,3 +147,11 @@ export function validatePayload(body) {
 
 /** Alias kept for the data track's server code and tests. */
 export const validateSync = validatePayload;
+
+/** Validates a request to remove one walk owned by this device. */
+export function validateDeleteWalk(body) {
+  if (body === null || typeof body !== 'object' || Array.isArray(body)) throw new ValidationError('body must be an object');
+  if (typeof body.deviceId !== 'string' || !DEVICE_ID.test(body.deviceId)) throw new ValidationError('deviceId must be 32 lowercase hex chars');
+  if (typeof body.walkId !== 'string' || !ID.test(body.walkId)) throw new ValidationError('walkId is invalid');
+  return { deviceId: body.deviceId, walkId: body.walkId };
+}

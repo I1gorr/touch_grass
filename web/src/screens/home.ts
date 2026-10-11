@@ -1,7 +1,7 @@
 import type { Walk } from '../models/types';
 import { go } from '../router';
 import { currentLocation, formatCoords, LocationError } from '../services/location';
-import { appBar, button, card, chip, iconButton, loading, toast } from '../ui/components';
+import { appBar, button, card, chip, dialog, iconButton, loading, toast } from '../ui/components';
 import { formatDate, plural, walkConditions, walkStatusLabel } from '../ui/copy';
 import { h, reactive, type Screen } from '../ui/dom';
 import { icon, type IconName } from '../ui/icons';
@@ -25,6 +25,76 @@ export function homeScreen(): Screen {
   };
 
   const open = (w: Walk, journal = false) => go(journal || w.status === 'done' ? `/journal/${w.id}` : `/walk/${w.id}`);
+
+  const requestDelete = async (w: Walk) => {
+    if (w.status === 'active') {
+      toast('Finish this walk before deleting it.');
+      return;
+    }
+    const confirmed = await dialog<boolean>({
+      title: 'Delete this journey?',
+      body: h('p', null, 'This permanently removes the quest, journal entries, and local photo. If cloud backup is enabled, its Atlas copy is removed too.'),
+      actions: [
+        { label: 'Keep journey', value: false },
+        { label: 'Delete journey', value: true, variant: 'filled' },
+      ],
+    });
+    if (!confirmed) return;
+    try {
+      if (s.sync) await s.sync.deleteWalk(w.id);
+      await s.repo.deleteWalk(w.id);
+      await refresh();
+      toast('Journey deleted.');
+    } catch (e) {
+      console.warn('[walk delete] failed:', e);
+      toast('Couldn’t delete it from the cloud. Nothing was removed.');
+    }
+  };
+
+  const journeyButton = (w: Walk) => {
+    let timer: ReturnType<typeof setTimeout> | null = null;
+    let longPressed = false;
+    const cancel = () => {
+      if (timer) clearTimeout(timer);
+      timer = null;
+    };
+    return h(
+      'button',
+      {
+        class: 'list-item grow',
+        type: 'button',
+        style: 'touch-action:manipulation',
+        onpointerdown: () => {
+          longPressed = false;
+          cancel();
+          timer = setTimeout(() => {
+            timer = null;
+            longPressed = true;
+            void requestDelete(w);
+          }, 650);
+        },
+        onpointerup: cancel,
+        onpointercancel: cancel,
+        onpointerleave: cancel,
+        oncontextmenu: (e: Event) => {
+          e.preventDefault();
+          longPressed = true;
+          void requestDelete(w);
+        },
+        onclick: (e: Event) => {
+          if (longPressed) {
+            e.preventDefault();
+            longPressed = false;
+            return;
+          }
+          open(w);
+        },
+      },
+      icon(STATUS_ICON[w.status]),
+      h('span', { class: 'grow' }, h('div', null, formatDate(w.createdAt)), h('div', { class: 'label' }, walkConditions(w))),
+      chip(walkStatusLabel(w.status)),
+    );
+  };
 
   const syncButton = () => {
     const sync = s.sync;
@@ -80,13 +150,7 @@ export function homeScreen(): Screen {
             h(
               'div',
               { class: 'row' },
-              h(
-                'button',
-                { class: 'list-item grow', type: 'button', onclick: () => open(w) },
-                icon(STATUS_ICON[w.status]),
-                h('span', { class: 'grow' }, h('div', null, formatDate(w.createdAt)), h('div', { class: 'label' }, walkConditions(w))),
-                chip(walkStatusLabel(w.status)),
-              ),
+              journeyButton(w),
               w.status !== 'done' && button({ label: 'Journal', variant: 'text', small: true, onclick: () => open(w, true) }),
             ),
           ),

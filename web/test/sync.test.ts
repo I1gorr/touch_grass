@@ -29,6 +29,8 @@ class FakeTransport implements SyncTransport {
     return this.refuse;
   }
 
+  async deleteWalk(): Promise<void> {}
+
   async close() {
     this.closed = true;
   }

@@ -165,7 +165,7 @@ describe('a voice note recorded before the speech model exists', () => {
 describe('backup and going back online', () => {
   const recording = () => {
     const pushes: SyncBatch[] = [];
-    const transport: SyncTransport = { push: async (_d, b) => (pushes.push(b), 0), close: async () => {} };
+    const transport: SyncTransport = { push: async (_d, b) => (pushes.push(b), 0), deleteWalk: async () => {}, close: async () => {} };
     return { pushes, transport };
   };
 

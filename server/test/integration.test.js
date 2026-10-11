@@ -88,6 +88,25 @@ test('new fields are validated: route_json stored, bad flags and long snippets r
   }
 });
 
+test('deleting a walk removes only that device-owned walk tree and its reports', async () => {
+  await call('/v1/sync', {
+    method: 'POST',
+    body: {
+      deviceId: A,
+      walks: [walk('w-delete')],
+      stops: [stop('w-delete')],
+      entries: [{ id: 'e-delete', stop_id: 'w-delete-0', cleaned_text: 'private note', updated_at: 5 }],
+    },
+  });
+  await call('/v1/reports', { method: 'POST', body: { deviceId: B, entryId: 'e-delete' } });
+  const r = await call('/v1/delete-walk', { method: 'POST', body: { deviceId: A, walkId: 'w-delete' } });
+  assert.equal(r.status, 200);
+  assert.equal(db.data.get('walks').has('w-delete'), false);
+  assert.equal(db.data.get('stops').has('w-delete-0'), false);
+  assert.equal(db.data.get('entries').has('e-delete'), false);
+  assert.equal(db.data.get('reports').has('e-delete:' + B), false);
+});
+
 test('/v1/places and /v1/reports require the API key, like /v1/sync', async () => {
   for (const [path, method, body] of [
     ['/v1/places?lat=40.78&lng=-73.96&radius=1000', 'GET'],

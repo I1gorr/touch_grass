@@ -46,6 +46,20 @@ export function createFakeDb() {
             }),
           ).length;
         },
+        async deleteMany(filter) {
+          const matches = [...docs.entries()].filter(([, doc]) =>
+            Object.entries(filter).every(([k, cond]) => {
+              const v = doc[k];
+              if (cond !== null && typeof cond === 'object') {
+                if ('$in' in cond && !cond.$in.includes(v)) return false;
+                return true;
+              }
+              return v === cond;
+            }),
+          );
+          for (const [id] of matches) docs.delete(id);
+          return { deletedCount: matches.length };
+        },
         // Unordered bulk of guarded upserts; duplicate keys reported like the driver does.
         async bulkWrite(ops) {
           let upsertedCount = 0;

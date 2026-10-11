@@ -25,6 +25,8 @@ export class SyncException extends Error {
 export interface SyncTransport {
   /** Returns how many rows the server refused because another install owns them (this one can't retry them). */
   push(deviceId: string, batch: SyncBatch): Promise<number>;
+  /** Permanently removes one device-owned walk and its cloud records. */
+  deleteWalk(deviceId: string, walkId: string): Promise<void>;
   /** Releases connections. Called once, when sync shuts down. */
   close(): Promise<void>;
 }
@@ -57,6 +59,26 @@ export class HttpSyncTransport implements SyncTransport {
       throw new SyncException(snippet === '' ? `HTTP ${res.status}` : snippet, res.status);
     }
     return foreignCount(text);
+  }
+
+  async deleteWalk(deviceId: string, walkId: string): Promise<void> {
+    const body = JSON.stringify({ deviceId, walkId });
+    let res: Response;
+    try {
+      res = await fetchWithTimeout(this.f, `${trimSlash(this.endpoint.replace(/\/v1\/sync$/, ''))}/v1/delete-walk`, {
+        method: 'POST',
+        headers: { 'content-type': 'application/json', 'x-api-key': this.apiKey },
+        body,
+      }, this.timeoutMs);
+    } catch (e) {
+      if (e instanceof DOMException && (e.name === 'TimeoutError' || e.name === 'AbortError')) throw new SyncException('timed out (offline?)');
+      throw new SyncException(`network error: ${e}`);
+    }
+    const text = await res.text().catch(() => '');
+    if (res.status < 200 || res.status >= 300) {
+      const snippet = text.length > 200 ? `${text.slice(0, 200)}…` : text;
+      throw new SyncException(snippet === '' ? `HTTP ${res.status}` : snippet, res.status);
+    }
   }
 
   async close(): Promise<void> {}

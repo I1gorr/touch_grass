@@ -6,8 +6,8 @@ import { cors } from './cors.js';
 import { parsePlacesQuery, placeStats } from './places.js';
 import { HIDE_AFTER_DEFAULT, saveReport, validateReport } from './reports.js';
 import { serveWebApp } from './static.js';
-import { applySync, totals } from './store.js';
-import { ValidationError, validatePayload } from './validate.js';
+import { applySync, deleteWalk, totals } from './store.js';
+import { ValidationError, validateDeleteWalk, validatePayload } from './validate.js';
 
 function sameSecret(a, b) {
   // Hash first so lengths match and comparison time doesn't leak the key.
@@ -58,6 +58,14 @@ export function createApp({
       // `counts` is the original reply; `accepted`/`skipped` are totals for the
       // data track's SyncClient. Both are always present.
       res.json({ ok: true, counts, ...totals(counts) });
+    } catch (e) {
+      next(e);
+    }
+  });
+
+  app.post('/v1/delete-walk', requireKey, async (req, res, next) => {
+    try {
+      res.json({ ok: true, ...(await deleteWalk(db, validateDeleteWalk(req.body))) });
     } catch (e) {
       next(e);
     }

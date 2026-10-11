@@ -185,6 +185,24 @@ export class WalkRepo {
     await this.updateWalkStatus(walkId, status);
   }
 
+  /** Permanently removes a walk and every local record belonging to it. */
+  async deleteWalk(walkId: string): Promise<void> {
+    const tx = this.db.transaction(['walk', 'stop', 'entry', 'photo', 'recordings'], 'readwrite');
+    const stops = await tx.objectStore('stop').index('walk_id').getAll(walkId);
+    const entries: EntryRow[] = [];
+    for (const stop of stops) entries.push(...(await tx.objectStore('entry').index('stop_id').getAll(stop.id)));
+
+    for (const entry of entries) {
+      await tx.objectStore('entry').delete(entry.id);
+      await tx.objectStore('recordings').delete(entry.id);
+    }
+    for (const stop of stops) await tx.objectStore('stop').delete(stop.id);
+    await tx.objectStore('photo').delete(walkId);
+    await tx.objectStore('walk').delete(walkId);
+    await tx.done;
+    this.emitter.emit();
+  }
+
   async getWalk(walkId: string): Promise<Walk | null> {
     const r = await this.db.get('walk', walkId);
     return r ? walkToModel(r) : null;

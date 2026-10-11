@@ -83,3 +83,16 @@ export function totals(counts) {
 export async function saveSync(db, payload, now = () => new Date()) {
   return totals(await applySync(db, payload, now()));
 }
+
+/** Deletes a device-owned walk, its stops, entries, and reports. */
+export async function deleteWalk(db, { deviceId, walkId }) {
+  const stops = await db.collection('stops').find({ walk_id: walkId, deviceId }).toArray();
+  const stopIds = stops.map((s) => s._id);
+  const entries = stopIds.length ? await db.collection('entries').find({ stop_id: { $in: stopIds }, deviceId }).toArray() : [];
+  const entryIds = entries.map((e) => e._id);
+  if (entryIds.length) await db.collection('reports').deleteMany({ entryId: { $in: entryIds } });
+  if (entryIds.length) await db.collection('entries').deleteMany({ _id: { $in: entryIds }, deviceId });
+  if (stopIds.length) await db.collection('stops').deleteMany({ _id: { $in: stopIds }, deviceId });
+  const walk = await db.collection('walks').deleteMany({ _id: walkId, deviceId });
+  return { deleted: { walks: walk.deletedCount, stops: stopIds.length, entries: entryIds.length } };
+}
