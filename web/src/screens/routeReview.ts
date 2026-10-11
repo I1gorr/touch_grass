@@ -8,7 +8,6 @@ import { appBar, button, card, choiceChip, dialog, loading, toast } from '../ui/
 import { categoryLabel, distanceLabel, durationLabel, plural, reasonSentence } from '../ui/copy';
 import { h, reactive, type Screen } from '../ui/dom';
 import { icon } from '../ui/icons';
-import { miniMap } from '../ui/miniMap';
 import { ctx } from './context';
 
 const REPORT_REASONS = [
@@ -140,11 +139,8 @@ export function routeReviewScreen(): Screen {
       return problem(`No loop of about ${request.minutes} minutes fits here.`, skipped.size > 0 ? { label: 'Bring back skipped places', run: () => (skipped.clear(), loadRoutes()) } : undefined);
     }
     const o = routes[Math.min(selected, routes.length - 1)].option;
-    const selectedRecommendation = routes[Math.min(selected, routes.length - 1)];
-    const selectedRoute = selectedRecommendation.quest;
     return [
       h('div', { class: 'chips' }, ...routes.map((r, i) => choiceChip(`${distanceLabel(totalM(r.option))} · ${durationLabel(r.option.durationS)}`, i === selected, () => ((selected = i), view.update())))),
-      miniMap({ routeJson: selectedRoute.walk.routeJson, stops: selectedRoute.stops, ways: selectedRecommendation.mapWays, start: { lat: selectedRoute.walk.startLat, lng: selectedRoute.walk.startLng } }),
       h('p', { class: 'title-sm', style: 'margin-top:12px' }, `${o.cards.length} stops · loop back to the start`),
       o.mode !== 'street' && h('p', { class: 'label', style: 'margin-top:4px' }, 'No street map for this area yet, so distances are estimates.'),
       h('div', { style: 'margin-top:8px' }, ...o.cards.map(stopCard)),
