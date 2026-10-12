@@ -1,56 +1,67 @@
 # Touch Grass
 
-Offline walk-quest app: an installable PWA for Android (Chrome → "Add to Home screen") that plans street-routed walk
-loops, records voice notes, and transcribes them on the phone.
+Touch Grass is an installable offline-first PWA for short, reflective walks. It prepares a street-routed quest while the user is online, then lets them walk, record voice notes, take a photo, and continue without a connection.
 
-- Web app, deployment, on-device models, tests: [`web/README.md`](web/README.md)
-- Cloud backup API (also serves the web app and answers browser calls): [`server/README.md`](server/README.md)
-- **New to the project? Start with [`docs/WEB_HANDOFF.md`](docs/WEB_HANDOFF.md)** (what was built, why, architecture, what is verified, what to do next)
-- Data schema (SQLite + Atlas) and why: [`docs/DATA_SCHEMA.md`](docs/DATA_SCHEMA.md)
+The deployed product is split into two services:
 
-Quick start: `cd web && npm install && npm run dev`.
-
-Tests: `cd web && npm test` (web app), `cd server && npm test` (sync API).
-
-# Touch Grass: data layer
-
-The database, cloud backup and routing code of the Touch Grass walk-quest app (Flutter). The screens, recording
-and language-model code are not part of this repository.
-
-```
-phone (SQLite, source of truth) ──HTTPS, x-api-key──▶ server/ ──mongodb driver──▶ MongoDB Atlas
+```text
+Android/Chrome PWA ── HTTPS + x-api-key ──▶ Render sync API ── MongoDB driver ──▶ MongoDB Atlas
+       │                                      │
+       └── IndexedDB: walks, notes, photos, models, map packs
 ```
 
-| | Where |
+## What is built
+
+- Street-based loop quests from cached OpenStreetMap data.
+- Offline route packs after the area has been downloaded once.
+- Voice notes recorded locally and transcribed on-device with Whisper.
+- Optional on-device Gemma 3 1B cleanup for punctuation, capitalization, and filler removal.
+- A formatted/raw journal toggle, with timestamps stored separately from model output.
+- Local-first deletion of incomplete or completed journeys.
+- Automatic cloud sync with MongoDB Atlas when the browser is online.
+- Device-scoped Atlas records; photos and audio recordings never leave the device.
+- Green, mobile-first interface with no database viewer or mini-map in the user-facing UI.
+
+## Repository map
+
+| Area | Purpose |
 |---|---|
-| **Setup**: opens the database and starts the backup | `lib/database.dart` (`AppDatabase.open`) |
-| **SQLite**: schema and migrations, walks/stops/entries, photos as BLOBs | `lib/db/`, `lib/models/` |
-| **SQLite (data track)**: saved quests with their route, place history, shared notes | `lib/datatrack/db/`, `lib/datatrack/models/` |
-| **Backup to MongoDB**: change tracking and upload | `lib/sync/` |
-| **MongoDB**: sync API and Atlas store | `server/` (see `server/README.md`) |
-| **Street routing** (walk graph, A*, route recommender) | `lib/datatrack/routing/` |
-| **Map packs and places** (Overpass, offline packs, bundled Central Park pack) | `lib/datatrack/tracks/data/`, `assets/fallback/` |
-| **Route variety** (short/medium/long rotation from walk history) | `lib/services/route_planner.dart` |
-| Data schema (SQLite + Atlas) and why | `docs/DATA_SCHEMA.md`, `docs/datatrack/DATA_SCHEMA.md` |
+| [`web/`](web/README.md) | Deployed PWA, routing, IndexedDB, on-device models, journal UI |
+| [`server/`](server/README.md) | Render-ready Express API and MongoDB Atlas integration |
+| [`lib/datatrack/`](lib/datatrack/tracks/data/README.md) | Legacy/reference Dart routing and data-track implementation |
+| [`INTEGRATE.md`](INTEGRATE.md) | Dart integration notes retained for the original app track |
 
-## Setup
-Step-by-step guide for plugging this into an app: **`INTEGRATE.md`**.
+## Local development
 
-```dart
-final db = await AppDatabase.open(config: SyncConfig.fromEnvironment());
-await db.repo.insertWalk(walk, stops);     // changes are uploaded in the background
-await db.close();
+```bash
+cd web
+npm install
+npm run dev
 ```
-Backup is off unless a sync URL is given at build time:
+
+The development server uses HTTPS because microphone, camera, service workers, and offline storage require a secure context. For the API:
+
+```bash
+cd server
+npm install
+node --env-file=.env src/index.js
 ```
-flutter run --dart-define=SYNC_URL=https://your-host --dart-define=SYNC_API_KEY=<server API_KEY>
-```
-Server setup (Atlas user, `.env`, `npm install`): `server/README.md`.
+
+## Deployment overview
+
+The current deployment uses:
+
+1. A Render Web Service for `server/`.
+2. A Render Static Site for the built `web/` application.
+3. A free MongoDB Atlas cluster for cloud backup.
+
+The web build receives `VITE_SYNC_URL` and `VITE_SYNC_API_KEY` at build time. The API receives `MONGODB_URI`, `MONGODB_DB`, `API_KEY`, and `ALLOWED_ORIGINS` at runtime. See the service-specific READMEs for the exact settings.
 
 ## Tests
+
 ```bash
-flutter analyze
-flutter test                 # SQLite, sync, routing, map packs
-cd server && npm test        # sync API (no Atlas needed)
+cd web && npm run typecheck && npm test && npm run build
+cd server && npm test
 ```
-Map scripts: `dart run scripts/datatrack/smoke_route.dart`, `dart run scripts/datatrack/record_pack.dart`.
+
+The web suite uses fake IndexedDB and does not require network access. The server suite uses a stub database and does not require an Atlas account.

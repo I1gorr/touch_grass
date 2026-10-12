@@ -1,155 +1,111 @@
-# Touch Grass — web app (PWA)
+# Touch Grass web app
 
-Touch Grass as an installable web app for Android (Chrome → "Add to Home screen"). It plans a walk loop on real streets, visit a few places, record a voice note at each, take one photo, and keep it
-all as a journal. It works with no network once opened, and speech-to-text runs **on the phone** (your voice is never
-uploaded).
+Touch Grass is an installable, mobile-first PWA. It prepares short walking quests, stores the journey locally, and keeps the screen useful when the user is offline.
 
-The routing code was ported from the original Flutter app (since removed) and is checked against its recorded output
-(see [Parity with the original planner](#parity-with-the-original-planner)).
+## User flow
 
-## Run it
+1. Choose a location and prepare a street-routed loop while online.
+2. Download the area's offline map pack when prompted.
+3. Start the walk and visit the suggested stops.
+4. Record a voice note or type a journal entry at each stop.
+5. Whisper transcribes voice notes on-device.
+6. Gemma 3 1B optionally formats the transcript; the app rejects unfaithful output and falls back to deterministic cleanup.
+7. Finish the walk and review the formatted or raw journal entry.
 
-```sh
-cd web
+The PWA has no user-facing database viewer and no mini-map. The map pack is used by the route planner rather than displayed as a floating navigation tile.
+
+## Run locally
+
+```bash
 npm install
-npm run dev            # https://localhost:5173 (self-signed certificate)
+npm run dev
 ```
 
-Microphone, camera and the service worker need a *secure context*, so dev and preview serve **HTTPS** with a
-self-signed certificate. To try it on a phone on the same Wi-Fi, open the `Network:` address Vite prints and accept
-the certificate warning.
+Vite serves HTTPS in development because microphone, camera, service workers, and offline storage require a secure context. For a production-style preview:
 
-```sh
-npm run build          # type-check + production build into dist/
-npm run preview        # serve dist/ over https (phone testing)
-npm run preview:http   # serve dist/ over http://127.0.0.1:4174 (needed by the PWA/e2e tests, see below)
+```bash
+npm run build
+npm run preview
 ```
 
-### Settings you can bake in at build time
+## Build-time configuration
 
-Copy-paste into a `.env.local` (all optional):
+Create `web/.env.local` when local configuration is needed:
 
-| Variable | Meaning |
+| Variable | Purpose |
 |---|---|
-| `VITE_SYNC_URL` | Sync server address (https). Empty = no cloud backup. |
-| `VITE_SYNC_API_KEY` | Key for the sync server. **It ships inside the web bundle**, so anyone who opens the app can read it. Fine for a private beta; for a public release the server needs per-user auth. |
-| `VITE_FAKE_QUEST=true` | Only the bundled Central Park map; nothing downloaded. |
-| `VITE_FAKE_DEVICES=true` | Simulated microphone and camera (desk testing). |
-| `VITE_ML_MODE`, `VITE_STT_MODE` | `auto` (default), `device`, `fallback` / `fake`. |
-| `VITE_DEMO_COORDS=lat,lng` | Starting area. |
-| `VITE_MAX_STOPS`, `VITE_ROUTE_VARIETY` | Cap the number of stops / vary routes between plans. |
-| `VITE_PROMPTS_URL` | Optional JSON file overriding the language-model prompts. |
+| `VITE_SYNC_URL` | Render sync API URL; empty disables cloud sync |
+| `VITE_SYNC_API_KEY` | Must match the server's `API_KEY`; this is shipped in the browser bundle |
+| `VITE_DEMO_COORDS` | Default starting location as `latitude,longitude` |
+| `VITE_MAX_STOPS` | Maximum stops per quest |
+| `VITE_ROUTE_VARIETY` | Whether successive plans vary their places |
+| `VITE_ML_MODE` | `auto`, `device`, `fallback`, or `fake` |
+| `VITE_STT_MODE` | `auto`, `device`, or `fake` |
+| `VITE_FAKE_QUEST` | Test-only bundled map mode |
+| `VITE_FAKE_DEVICES` | Test-only simulated microphone/camera mode |
+| `VITE_PROMPTS_URL` | Optional JSON prompt override |
 
-People can change most of these in the app's Settings; theirs win over the build-time defaults.
+Cloud configuration is supplied at build time. Normal users do not edit the server URL or API key in the Settings screen.
 
-## Deploy
+## Render Static Site deployment
 
-It is a static site: put `dist/` on any host that serves **HTTPS**. Requirements:
+Create a Render Static Site for the `web/` directory:
 
-- HTTPS (the host usually provides it). Without it there is no microphone, camera or offline mode.
-- `.wasm` served as `application/wasm` (all common hosts do).
-- Don't cache `index.html`, `sw.js` or `manifest.webmanifest`; do cache `assets/*` for a long time (hashed names).
-- Hosting in a sub-folder? Build with `npx vite build --base=/touch-grass/`.
-
-**Easiest: let the sync server host it.** Build the web app, then start the server with `STATIC_DIR=../web/dist`
-(`server/README.md`). The app and the API share one origin, so there is no CORS and no mixed-content problem, and the
-server already sets the right cache headers. If the app lives on a *different* origin than the server, set
-`ALLOWED_ORIGINS=https://your-app-origin` on the server instead.
-
-An update is installed when the app is closed and reopened (it never reloads in the middle of a walk).
-
-## How it works
-
-```
-src/
-  routing/    street graph, A*/Dijkstra, route recommender, place value (port of the original Dart planner)
-  data/       offline map packs (IndexedDB), Overpass, weather, community stats, reports, route service
-  db/         IndexedDB schema (mirrors SQLite v6) and the walk repository
-  sync/       cloud backup (/v1/sync API)
-  media/      microphone (Web Audio, 16 kHz mono) and camera (<input capture>, JPEG, EXIF removed)
-  ml/         on-device speech + language models, in a Web Worker
-  services/   walk controller, entry pipeline, app wiring, online tasks, wake lock, location
-  screens/    home, route review, walk, journal, settings, database viewer
-  ui/         DOM helpers, components, icons, theme.css (green palette)
+```text
+Build command: npm install && npm run build
+Publish directory: dist
 ```
 
-- **Storage** is IndexedDB. Walks, stops, entries and the photo live in the same tables as the SQLite schema (same
-  column names, so the sync payload is identical). The app asks the browser to keep this data
-  (`navigator.storage.persist()`), but clearing site data deletes it, so turn on cloud backup if the journal matters.
-- **Recordings** are stored *before* the entry is created and deleted only *after* the transcript is saved, so a
-  crash or a closed tab never loses a note. Unfinished notes resume on the next start.
-- **Photos** are re-encoded to a JPEG at most 2048 px wide, which also strips the EXIF block (no GPS position or device
-  name in the stored picture). One photo per walk, never uploaded.
-- **Routing** runs in a Web Worker; the demo map (Central Park) ships with the app, other areas download from
-  OpenStreetMap once and are kept for offline use.
-- **While recording** the screen stays on (Wake Lock): browsers cut microphone capture when the screen locks.
+Set `VITE_SYNC_URL` and `VITE_SYNC_API_KEY` in the Static Site environment settings, then redeploy whenever either value changes. The server must list the Static Site origin in its `ALLOWED_ORIGINS` variable.
 
-### On-device models
+The app can also be served by the API service with `STATIC_DIR=../web/dist`; that same-origin deployment avoids CORS configuration.
 
-Settings → *On-device models*. Nothing is downloaded until you press **Download**.
+## Offline and local storage
 
-| | Model | Download | Notes |
-|---|---|---|---|
-| Speech to text | Whisper base (English) | ~80 MB | The default. Needed for voice notes. Runs on WebAssembly. |
-| | Whisper tiny (English) | ~43 MB | For slow phones. |
-| Language model (optional) | Gemma 3 1B | ~880 MB | Recommended; writes stop text and tidies notes. **Needs WebGPU** (recent Android Chrome on a capable phone). |
-| | Gemma 3 270M | ~345 MB | Not recommended: see below. |
+IndexedDB is the web app's local source of truth. It stores:
 
-The first model also downloads the ONNX runtime (~7 MB on the wire, served from this app's own origin). Models are
-kept in the browser's Cache Storage and work offline afterwards. An interrupted download starts again from the
-beginning (a limitation of the library), so use Wi-Fi.
+- Quest, stop, and journal metadata.
+- One local photo per walk.
+- Voice recordings until transcription completes.
+- Offline map packs and model caches.
 
-**The language model only runs on WebGPU.** Its 4-bit weights use an operator the WebAssembly backend doesn't implement (we saw
-`Could not find an implementation for GatherBlockQuantized`), so on a browser without WebGPU Settings explains that and offers no
-download, rather than letting someone spend ~880 MB on something that can't run. The speech model runs on WebAssembly everywhere.
-**The language model has not been run in a browser yet**: the machine used for testing has no WebGPU, so only its output
-checks (against real Gemma answers from Node) and the "no WebGPU" path are verified.
+Cloud sync is automatic after changes, on the browser's `online` event, and periodically while the app is open. If a request fails, the local rows remain pending and retry automatically. Journey deletion removes the local records immediately; an Atlas deletion request is retried separately.
 
-What happens without models: voice notes are **saved and wait** (you'll see "Waiting for the speech model"), and turn
-into text as soon as the speech model is downloaded. Stop descriptions and note cleanup fall back to **pre-written
-text and rule-based cleanup** — plain, but always correct. There is no fake transcription outside the "Sample" test mode.
+The browser's persistent-storage request reduces accidental eviction, but clearing site data still removes local walks, photos, recordings, map packs, and downloaded models.
 
-**Small language models get things wrong, so every answer is checked** (`src/ml/guards.ts`) before it is used.
-In our tests Gemma 270M, asked to clean a transcript, returned the prompt itself (`END TRANSCRIPT / Reply with the
-cleaned text only`), and asked for a blurb it invented details and left a `[Your Address]` placeholder. Both are now
-rejected: a cleaned note must use (almost) only the spoken words and keep (almost) all of them; a blurb must be one short
-paragraph with no markdown, placeholders, or numbers and names that aren't in the stop's facts. Rejected answers are
-replaced by the pre-written text. Gemma 1B produced usable answers in the same tests.
+## On-device models
 
-Performance and memory: phones with less than ~6 GB of RAM keep one model in memory at a time (the other is reloaded
-from the cache when needed). Multi-threaded WebAssembly needs cross-origin isolation (`COOP`/`COEP` headers), which
-a plain static host doesn't send, so inference uses one thread. In our desktop test (headless Chromium, Whisper tiny) a 14 s
-note took about 2 s to transcribe; **we have not measured real phones yet**, so expect it to be slower there.
+| Task | Model | Approx. download | Notes |
+|---|---|---:|---|
+| Speech-to-text | Whisper base English | 80 MB | Default and more accurate; runs through WebAssembly |
+| Speech-to-text | Whisper tiny English | 43 MB | Smaller and faster option |
+| Text cleanup | Gemma 3 1B | 880 MB | Recommended; requires WebGPU |
+| Text cleanup | Gemma 3 270M | 345 MB | Smaller but less reliable |
 
-## Tests
+Models are downloaded only when requested and remain in browser cache for offline use. Without Whisper, voice recordings wait locally. Without Gemma, the app uses rule-based cleanup. The journal timestamp is recorded by the app and is never generated by the language model.
 
-```sh
-npm test               # ~300 unit and integration tests (Vitest, fake IndexedDB): fast, no network
+The shared API key is visible in the built web bundle. This is acceptable for a private beta; a public release should use per-user authentication and rate limiting.
+
+## Source layout
+
+```text
+src/routing/   street graph, route recommendation, path encoding
+src/data/      offline packs, Overpass, weather, community data, reports
+src/db/        IndexedDB schema and repository
+src/sync/      automatic Atlas backup transport
+src/media/     microphone and camera capture
+src/ml/        Whisper/Gemma workers, prompts, output guards
+src/services/  walk controller, transcription pipeline, app wiring
+src/screens/   home, route review, walk, journal, settings
+src/ui/        DOM helpers, components, icons, green visual theme
+```
+
+## Checks
+
+```bash
 npm run typecheck
-npm run preview        # (or preview:http), then in another terminal:
-npm run e2e            # real Chromium at phone size: home → plan → walk → record → photo → journal
-npm run e2e:pwa        # needs preview:http. Manifest, installability, offline cache, reload with no network
-npm run e2e:models     # ~50 MB download. Real speech → on-device transcript, with the network switched off
-npm run e2e:llm        # needs a browser with WebGPU (skips with a note otherwise); large download
+npm test
+npm run build
 ```
 
-The e2e scripts drive the system Chromium (`CHROMIUM=/path/to/chromium` to change it) with Chromium's fake microphone and
-camera, and take screenshots into `shots/` (ignored by git). `e2e:models` needs `SPEECH_WAV=/path/to.wav`
-(16-bit PCM speech).
-
-### Parity with the original planner
-
-`test/parity.test.ts` compares the TypeScript route planner with the recorded output of the original Dart planner
-(`test/fixtures/dart_parity.json`, 15 scenarios: street grid and the real Central Park data, several seeds, community
-notes, history, straight-line fallback): same stops, leg lengths, scores, encoded polylines and byte-identical
-`route_json`. The Dart source is gone, so the fixture is frozen. If you intentionally change the planner, update or
-remove that test and say why.
-
-## Known limitations
-
-- Interrupted model downloads restart from zero.
-- The sync API key is visible to anyone who can open the app (see above).
-- The first load needs a connection to cache the app; after that everything but map downloads and backup works offline.
-- Clearing the browser's site data deletes walks, recordings and downloaded models.
-- Gemma 1B is large (about 860 MB of weights, plus working memory): we have not tested it on phones, and on a low-memory phone
-  the browser may close the tab. The app works fully without it.
+The automated suite uses fake IndexedDB and covers routing, storage, transcription resilience, sync bookkeeping, and model-output guards.

@@ -1,82 +1,95 @@
-# Touch Grass sync API → MongoDB Atlas
+# Touch Grass sync API
 
-The phone keeps everything in SQLite, including photos, so walks work offline. When it's online it POSTs new or
-changed walk/stop/entry rows (text only) here, and this service upserts them into Atlas. **Atlas credentials live only on this server**;
-the app only knows this API's URL and key.
+This Render-ready Express service receives the small text/metadata rows produced by the web PWA and stores them in MongoDB Atlas. The browser keeps the local IndexedDB copy as its source of truth.
 
-```
-phone (SQLite, source of truth) ──HTTPS, x-api-key──▶ this API ──mongodb driver──▶ Atlas
+```text
+PWA IndexedDB ── HTTPS + x-api-key ──▶ Express API ── MongoDB driver ──▶ MongoDB Atlas
 ```
 
-## Setup
-1. In Atlas: create a cluster, then a **database user with readWrite on `touch_grass` only**.
-   Add this server's IP under Network Access.
-2. `cp .env.example .env` and fill in `MONGODB_URI` and `API_KEY` (16+ random chars).
-3. `npm install`, then `node --env-file=.env src/index.js` (Node ≥ 20.6; or export the vars yourself).
-4. `curl localhost:8080/healthz` should return `{"ok":true}`.
+Photos, audio recordings, and raw image bytes are never sent to this service.
 
-## Web app: CORS and hosting
+## Local setup
 
-The web app in `../web` can use this server two ways.
+1. In MongoDB Atlas, create a database user with `readWrite` access to the `touch_grass` database.
+2. Add the server's network location under Atlas Network Access. For testing, Atlas's temporary `0.0.0.0/0` rule works but is less restrictive.
+3. Copy the environment template:
 
-- **Same origin (simplest).** Build the web app (`cd ../web && npm run build`) and start this server with
-  `STATIC_DIR=../web/dist`. It serves the app, the service worker (never cached without revalidation) and the hashed assets
-  (cached for a year), and falls back to `index.html` for page reloads. The API is untouched. No CORS is needed.
-  Put the server behind HTTPS: the microphone, camera and offline mode need it.
-- **Different origin.** Set `ALLOWED_ORIGINS=https://your-app-origin` (comma-separated, no trailing slash). Those origins
-  get CORS headers and preflight answers; every other origin gets none, so browsers block it. With nothing set, CORS is off
-  and only same-origin pages and non-browser clients (curl) can call the API. `*` allows any site; use it for
-  testing only. CORS is not authentication: the `x-api-key` is still required.
+   ```bash
+   cp .env.example .env
+   ```
 
-Note that the key the web app sends ships inside the web bundle, so anyone who opens the app can read it. That is acceptable
-for a private beta; before a public release the API needs per-user authentication.
+4. Set `MONGODB_URI` and a matching `API_KEY` of at least 16 characters.
+5. Start the service:
 
-Run the app against it:
+   ```bash
+   npm install
+   node --env-file=.env src/index.js
+   ```
+
+6. Check it:
+
+   ```bash
+   curl http://localhost:8080/healthz
+   ```
+
+Expected response:
+
+```json
+{"ok":true}
 ```
-flutter run --dart-define=SYNC_URL=https://your-host --dart-define=SYNC_API_KEY=<same key>
+
+## Render deployment
+
+Create a Render Web Service for this `server/` directory:
+
+```text
+Build command: npm install
+Start command: npm start
 ```
-The URL can also be changed under Settings → Cloud backup; the key is build-time only.
-For the Android emulator talking to a laptop, use `http://10.0.2.2:8080`. Plain http is accepted only for
-localhost/LAN, and Android also needs `android:usesCleartextTraffic="true"` for that debug build.
+
+Set these Render environment variables:
+
+| Variable | Purpose |
+|---|---|
+| `MONGODB_URI` | Atlas connection string |
+| `MONGODB_DB` | Database name; normally `touch_grass` |
+| `API_KEY` | Shared API key used by the PWA |
+| `ALLOWED_ORIGINS` | Exact static-site origin, for example `https://prairie.onrender.com` |
+| `PORT` | Usually supplied by Render; the app defaults to `8080` locally |
+
+`ALLOWED_ORIGINS` must contain the exact PWA origin with no trailing slash. Without it, browser requests from a separate Render Static Site are blocked by CORS before they reach the API.
 
 ## API
-| Method | Path | |
+
+| Method | Path | Purpose |
 |---|---|---|
-| GET | `/healthz` | pings Atlas: 200 or 503 |
-| POST | `/v1/sync` | header `x-api-key`; body `{deviceId, walks[], stops[], entries[]}` (rows as in SQLite) |
-| GET | `/v1/places?lat=&lng=&radius=` | header `x-api-key`; community counts and opt-in shared notes for an area (100–5000 m) |
-| POST | `/v1/reports` | header `x-api-key`; body `{deviceId, entryId, reason?}`; 202 recorded, 404 unknown note |
+| `GET` | `/healthz` | Pings Atlas and returns service health |
+| `POST` | `/v1/sync` | Upserts device-owned walks, stops, and journal metadata |
+| `POST` | `/v1/delete-walk` | Deletes one device-owned journey tree and its reports |
+| `GET` | `/v1/places?lat=&lng=&radius=` | Returns privacy-filtered community counts and shared notes |
+| `POST` | `/v1/reports` | Records a report against a shared note |
 
-**Merged from the data track** (`/home/aardo/Touch grass`), without changing existing behaviour:
-- `/v1/sync` also accepts `walks.route_json`, `entries.has_photo` (0/1), `entries.shared` (0/1) and
-  `entries.shared_text` (≤ 280 chars). All optional: clients that don't send them are unaffected.
-- A legacy `entries.photo_path` is turned into `has_photo` and dropped; no path or image is ever stored.
-- The reply keeps `{ok, counts}` and adds the totals `accepted` and `skipped`, which the data track's client reads.
-- `/v1/places` and `/v1/reports` need the same API key as `/v1/sync`.
-- Env: `MIN_DEVICES` (default 2) hides places seen by fewer phones; `HIDE_AFTER` (default 3) reports hide a note.
+Protected routes require the `x-api-key` header. The delete endpoint accepts `{deviceId, walkId}` and removes the matching walk, stops, entries, and reports. It is safe when the journey was never uploaded: the server simply has nothing to remove.
 
-**No images.** Photos stay in the phone's SQLite database and never reach this API or Atlas. There is no
-photo or media route (404), non-JSON bodies on `/v1/sync` are rejected (400), and any `photo_path` or other
-image field in a row is dropped by the allow-list.
+## Automatic sync behavior
 
-Responses: 200 `{ok, counts}` where each collection reports `written`, `skipped` (a newer copy is stored) and
-`foreign` (owned by another install; the app surfaces these), 400 invalid payload, 401 bad key (the app pauses auto-sync),
-413 too large, 5xx (the app retries later).
+The PWA syncs automatically after local changes, when connectivity returns, and on a periodic timer. It does not expose a manual sync control in Settings. If the network is unavailable, local rows remain pending and retry later. Journey deletion is local-first and leaves a durable deletion request so an Atlas copy can be removed later.
 
-## Data model in Atlas
-Collections `walks`, `stops` and `entries`. One document per SQLite row, `_id` = row id. Fields are the same
-snake_case columns, plus `deviceId` and `receivedAt`.
+## Atlas data model
 
-Write rules (`src/store.js`):
-- **Idempotent**: re-sending a batch is harmless.
-- **No stale overwrites**: a write applies only if its `updated_at` is newer than the stored one.
-- **Device-scoped**: a device can't overwrite another device's documents.
+The service stores separate MongoDB documents in `walks`, `stops`, and `entries`, one document per local row. Documents contain `_id`, `deviceId`, `receivedAt`, and the allow-listed row fields. Reports are stored separately.
+
+- `walks`: quest status, start point, conditions, and compact route JSON.
+- `stops`: stop name, coordinates, tags, blurb, and prompt.
+- `entries`: raw transcript, cleaned text, timestamp, sharing flags, and a photo-present flag.
+- `reports`: report metadata for shared notes.
+
+Images, audio, file paths, and EXIF data are not stored in Atlas. The `deviceId` prevents one installation from overwriting another installation's records.
 
 ## Tests
-`npm test` uses Node's built-in runner. It covers validation and write logic with a stub DB, with no Atlas needed.
 
-## Not done yet
-- Photos are not backed up (by design): they exist only on the phone.
-- Deletes: the app doesn't delete rows today, so there's nothing to sync. Add tombstones if that changes.
-- The shared API key identifies *the app*, not a user. Add real auth (e.g. sign-in → per-user token) before
-  any public release, and put a rate limiter in front.
+```bash
+npm test
+```
+
+The Node test suite uses an in-memory stub database and does not require a live Atlas cluster.
